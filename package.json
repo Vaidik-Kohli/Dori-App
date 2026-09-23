@@ -5,8 +5,7 @@
   "main": "src/triage_copilot.js",
   "type": "module",
   "scripts": {
-    "start": "node src/triage_copilot.js",
-    "server": "node server.js",
+    "start": "node server.js",
     "copilot": "node src/triage_copilot.js",
     "generate-scripts": "python scripts/make_scripts.py",
     "format-scripts": "python scripts/format_for_sharing.py"
