@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Bharat Care — Helper App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // -------------------------------------------------------
+
+</script>
+  <!-- Load Figtree for a friendly, highly legible, accessible font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Figtree', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            bgLight: '#FAF9F6', // Warm off-white
+            bgDark: '#0A0A0A',  // True deep dark
+            surfaceLight: '#FFFFFF',
+            surfaceDark: '#171717',
+            borderLight: '#E5E5E5',
+            borderDark: '#262626',
+            primary: '#059669', // Strong emerald
+            primaryDark: '#047857',
+            alert: '#DC2626',   // Strong red
+            warning: '#F59E0B',
+            blueUI: '#2563EB',  // Strong blue for active states
+            blueUIDark: '#1D4ED8',
+          },
+          boxShadow: {
+            'btn-3d': '0 8px 0 #047857, 0 15px 20px rgba(0,0,0,0.15)',
+            'btn-3d-active': '0 2px 0 #047857, 0 5px 10px rgba(0,0,0,0.1)',
+            'btn-3d-blue': '0 8px 0 #1D4ED8, 0 15px 20px rgba(0,0,0,0.15)',
+            'btn-3d-blue-active': '0 2px 0 #1D4ED8, 0 5px 10px rgba(0,0,0,0.1)',
+          }
+        },
+      },
+    };// -------------------------------------------------------
+
+</script>
+  <style>
+    /* Tactile button transition */
+    .btn-tactile {
+      transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-tactile:active {
+      transform: translateY(6px);
+    }
+    .btn-tactile-blue:active {
+      box-shadow: theme('boxShadow.btn-3d-blue-active') !important;
+    }
+
+    /* Subdued pulsing for radar map */
+    @keyframes subtle-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.95); }
+    }
+    .animate-subtle-pulse {
+      animation: subtle-pulse 2s ease-in-out infinite;
+    }
+
+    /* OTP box styling - High contrast */
+    .otp-input {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 72px;
+      font-size: 36px;
+      font-weight: 900;
+      text-align: center;
+      border-radius: 12px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .otp-input:focus {
+      border-color: theme('colors.blueUI');
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+    }
+    
+    /* Hide scrollbar */
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+
+<body class="bg-bgLight dark:bg-bgDark text-[#171717] dark:text-[#F5F5F5] antialiased min-h-screen flex flex-col transition-colors duration-300" style="-webkit-tap-highlight-color: transparent;">
+
+  <div class="flex-1 flex flex-col max-w-[480px] mx-auto w-full relative border-x-2 border-borderLight dark:border-borderDark bg-bgLight dark:bg-bgDark h-[100dvh] overflow-hidden">
+
+    <!-- HEADER -->
+    <header class="px-6 py-5 flex items-center justify-between border-b-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-surfaceDark shrink-0 z-20">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-[12px] bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-black">
+          RK
+        </div>
+        <div>
+          <h1 id="dynamicHelperName" class="text-sm font-extrabold tracking-tight">Rajesh Kumar</h1>
+          <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-1 mt-0.5">
+            <span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+            On Duty
+          </p>
+        </div>
+      </div>
+
+      <!-- Theme Toggle -->
+      <div class="flex items-center gap-2">
+        <a href="index.html" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none portal-home-btn" title="Back to Portal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </a>
+        <button onclick="startTutorial(true)" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white" title="Help">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-700 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </button>
+        <button id="themeToggle" onclick="toggleTheme()" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
+        <svg id="iconSun" class="hidden w-5 h-5 text-warning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+        </svg>
+        <svg id="iconMoon" class="w-5 h-5 text-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      </div>
+    </header>
+
+    <!-- SCROLLABLE BODY -->
+    <main class="flex-1 overflow-y-auto pb-24 relative flex flex-col min-h-0">
+      
+      <!-- ==============================================
+           STATE 1: NEW JOB ALERT
+           ============================================== -->
+      <div id="state1-job" class="p-6 flex flex-col h-full">
+        <h2 class="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">Job Board</h2>
+        
+        <div class="bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] overflow-hidden shadow-sm flex flex-col flex-1">
+          <div class="p-6 border-b-2 border-borderLight dark:border-borderDark bg-blueUI/10 relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-32 h-32 bg-blueUI/20 rounded-full blur-2xl"></div>
+            <p class="text-[10px] font-black uppercase tracking-widest text-blueUI mb-2 relative z-10">New Request Match</p>
+            <h3 id="jobCategory" class="text-2xl font-black relative z-10">Tech Troubleshooting</h3>
+          </div>
+          
+          <div class="p-6 space-y-6 flex-1 bg-bgLight dark:bg-[#1A1A1A]">
+            <div>
+              <p class="text-xs font-black uppercase tracking-widest text-slate-500 mb-1">Target Location</p>
+              <p class="text-base font-bold flex items-center gap-2">
+                <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                Amritsar — <span class="text-primary">5km away</span>
+              </p>
+            </div>
+
+            <div>
+              <p class="text-xs font-black uppercase tracking-widest text-slate-500 mb-1">Scheduled For</p>
+              <p class="text-base font-bold flex items-center gap-2">
+                <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span id="jobTime">Today, 3:00 PM</span>
+              </p>
+            </div>
+
+            <div>
+              <p class="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Description</p>
+              <p id="jobSummary" class="text-sm font-semibold text-slate-600 dark:text-slate-300 leading-relaxed bg-surfaceLight dark:bg-surfaceDark p-4 rounded-xl border-2 border-borderLight dark:border-borderDark">
+                "Video call screen is black. Audio works but camera shows nothing."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 flex justify-center pb-4 shrink-0">
+          <button id="btnAccept" onclick="acceptJob()" class="btn-tactile w-full h-[72px] rounded-[24px] bg-primary text-white text-lg font-black tracking-wide shadow-btn-3d flex items-center justify-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Accept Job
+          </button>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           STATE 2: ACTIVE JOB (EN ROUTE)
+           ============================================== -->
+      <div id="state2-active" class="hidden flex flex-col h-full relative">
+        
+        <!-- Map Placeholder Background -->
+        <div class="absolute inset-0 z-0 bg-[#E5E7EB] dark:bg-[#1C1C1E] overflow-hidden border-b-2 border-borderLight dark:border-borderDark">
+          <!-- Grid lines for map abstraction -->
+          <div class="w-full h-full opacity-20 dark:opacity-10" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 30px 30px;"></div>
+          <!-- Route abstraction -->
+          <svg class="absolute top-1/4 left-1/4 w-1/2 h-1/2 text-blueUI opacity-50" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="6 6">
+            <path d="M10,90 Q40,90 50,50 T90,10" />
+          </svg>
+          <div class="absolute top-1/4 left-[75%] w-6 h-6 -translate-x-3 -translate-y-3 bg-alert rounded-full border-4 border-white dark:border-black shadow-lg animate-subtle-pulse z-10"></div>
+          <div class="absolute top-[75%] left-1/4 w-6 h-6 -translate-x-3 -translate-y-3 bg-blueUI rounded-full border-4 border-white dark:border-black shadow-lg z-10"></div>
+        </div>
+
+        <!-- Floating UI Over Map -->
+        <div class="relative z-10 flex flex-col h-full justify-between p-6 pointer-events-none">
+          
+          <!-- Top Info -->
+          <div class="bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[20px] p-5 shadow-lg pointer-events-auto mt-2">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Navigating To</p>
+                <h3 class="text-xl font-black">Gurleen Kaur</h3>
+                <p class="text-sm font-bold text-slate-500 mt-1">Block C, Ranjit Avenue</p>
+              </div>
+              <div class="w-12 h-12 rounded-full bg-blueUI/10 flex items-center justify-center text-blueUI border border-blueUI/20">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action -->
+          <div class="pointer-events-auto pb-4">
+            <button onclick="arriveAtJob()" class="btn-tactile btn-tactile-blue w-full h-[72px] rounded-[24px] bg-blueUI text-white text-lg font-black tracking-wide shadow-btn-3d-blue flex items-center justify-center gap-3">
+              I Have Arrived
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==============================================
+           STATE 3: SECURITY VERIFICATION
+           ============================================== -->
+      <div id="state3-verify" class="hidden flex flex-col h-full p-6">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center border-2 border-primary/20 shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-xl font-black">Security Verification</h2>
+            <p class="text-sm font-semibold text-slate-500 mt-1">Ask the parent for their 4-digit code to begin the task.</p>
+          </div>
+        </div>
+
+        <!-- OTP Input Area -->
+        <div id="otp-container" class="bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-8 shadow-sm text-center mb-8">
+          <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-6">Enter Parent's Code</p>
+          
+          <div class="flex justify-center gap-3 mb-6" id="otp-inputs">
+            <input type="text" maxlength="1" class="otp-input border-2 border-borderLight dark:border-borderDark bg-bgLight dark:bg-[#262626]" oninput="handleOtp(this, 0)">
+            <input type="text" maxlength="1" class="otp-input border-2 border-borderLight dark:border-borderDark bg-bgLight dark:bg-[#262626]" oninput="handleOtp(this, 1)">
+            <input type="text" maxlength="1" class="otp-input border-2 border-borderLight dark:border-borderDark bg-bgLight dark:bg-[#262626]" oninput="handleOtp(this, 2)">
+            <input type="text" maxlength="1" class="otp-input border-2 border-borderLight dark:border-borderDark bg-bgLight dark:bg-[#262626]" oninput="handleOtp(this, 3)">
+          </div>
+
+          <!-- Error/Hint Message -->
+          <p id="otp-message" class="text-sm font-bold text-slate-400">Waiting for code...</p>
+        </div>
+
+        <!-- Success Banner -->
+        <div id="success-banner" class="hidden bg-primary/10 border-2 border-primary/20 rounded-[20px] p-5 mb-8 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6 9 17l-5-5"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-base font-black text-primaryDark dark:text-primary">Verified.</p>
+            <p class="text-sm font-bold text-primary/80">Proceed with task.</p>
+          </div>
+        </div>
+
+        <div class="mt-auto pb-4 shrink-0">
+          <button id="completeBtn" onclick="updateJobStatus('completed')" class="w-full h-[72px] rounded-[24px] bg-borderLight dark:bg-borderDark text-slate-400 text-lg font-black tracking-wide pointer-events-none transition-all duration-300">
+            Mark Task Complete
+          </button>
+        </div>
+      </div>
+
+    </main>
+    
+    <!-- DEBUG DEMO BAR (Pitch / Testing) -->
+    <div class="absolute top-0 left-0 w-full bg-black text-white text-[10px] font-bold p-1 flex justify-center gap-4 z-50 opacity-20 hover:opacity-100 transition-opacity">
+      <span class="text-gray-400">DEMO:</span>
+      <button onclick="showState(1)" class="hover:text-blue-400 uppercase">Alert</button>
+      <button onclick="showState(2)" class="hover:text-amber-400 uppercase">Active</button>
+      <button onclick="showState(3)" class="hover:text-emerald-400 uppercase">Verify</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Theme Toggle Logic
+    function applyTheme(theme) {
+      const sunIcon = document.getElementById('iconSun');
+      const moonIcon = document.getElementById('iconMoon');
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const nextTheme = isDark ? 'light' : 'dark';
+      localStorage.setItem('bharatcare-theme', nextTheme);
+      applyTheme(nextTheme);
+    }
+
+    // State Machine
+    function showState(num) {
+      document.getElementById('state1-job').classList.add('hidden');
+      document.getElementById('state2-active').classList.add('hidden');
+      document.getElementById('state3-verify').classList.add('hidden');
+
+      if (num === 1) document.getElementById('state1-job').classList.remove('hidden');
+      if (num === 2) document.getElementById('state2-active').classList.remove('hidden');
+      if (num === 3) document.getElementById('state3-verify').classList.remove('hidden');
+    }
+
+    function acceptJob() {
+      updateJobStatus('en_route');
+    }
+
+    function arriveAtJob() {
+      showState(3);
+      // Auto focus first OTP input
+      setTimeout(() => {
+        document.querySelector('.otp-input').focus();
+      }, 100);
+    }
+
+    // OTP Logic (Hardcoded to 4092 to match Parent Dashboard)
+    
+
+    function handleOtp(el, index) {
+      el.value = el.value.replace(/[^0-9]/g, ''); // numeric only
+      
+      const inputs = document.querySelectorAll('.otp-input');
+      
+      // Auto advance
+      if (el.value.length === 1 && index < 3) {
+        inputs[index + 1].focus();
+      }
+
+      // Check full OTP
+      let currentOtp = '';
+      inputs.forEach(inp => currentOtp += inp.value);
+
+      if (currentOtp.length === 4) {
+        if (currentOtp === dynamicOtp) {
+          // Success
+          playSound('chime');
+          triggerVibration([100, 50, 100]);
+          document.getElementById('otp-message').textContent = "";
+          inputs.forEach(inp => {
+            inp.classList.remove('border-alert', 'text-alert');
+            inp.classList.add('border-primary', 'text-primary', 'bg-primary/5');
+            inp.blur();
+            inp.readOnly = true;
+          });
+          
+          document.getElementById('success-banner').classList.remove('hidden');
+          
+          // Enable completion button
+          const btn = document.getElementById('completeBtn');
+          btn.className = "btn-tactile w-full h-[72px] rounded-[24px] bg-primary text-white text-lg font-black tracking-wide shadow-btn-3d flex items-center justify-center gap-3";
+          btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Mark Task Complete`;
+          btn.onclick = () => { alert('Demo Complete! Task marked as done.'); updateJobStatus('completed'); };
+        } else {
+          // Error
+          document.getElementById('otp-message').textContent = "Incorrect code. Please check with parent.";
+          document.getElementById('otp-message').classList.remove('text-slate-400');
+          document.getElementById('otp-message').classList.add('text-alert');
+          inputs.forEach(inp => inp.classList.add('border-alert', 'text-alert'));
+        }
+      } else {
+        // Reset styles while typing
+        document.getElementById('otp-message').textContent = "Waiting for code...";
+        document.getElementById('otp-message').classList.add('text-slate-400');
+        document.getElementById('otp-message').classList.remove('text-alert');
+        inputs.forEach(inp => inp.classList.remove('border-alert', 'text-alert'));
+      }
+    }
+
+    // INIT
+
+    // Keyboard Hotkeys for Demo
+    document.addEventListener('keydown', (e) => {
+      if (e.shiftKey) {
+        if (e.key === '!') showState(1);
+        if (e.key === '@') showState(2);
+        if (e.key === '#') showState(3);
+      }
+    });
+
+    (function init() {
+      const savedTheme = localStorage.getItem('bharatcare-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      applyTheme(savedTheme);
+      showState(1);
+    })();
+
+    // -------------------------------------------------------
+    // LIVE DB POLLING
+    // -------------------------------------------------------
+    let activeJobId = null;
+    let lastStatus = null;
+    let dynamicOtp = null;
+
+    async function pollActiveJob() {
+      try {
+        const res = await fetch('/api/jobs/active');
+        const job = await res.json();
+        
+        if (job) {
+            activeJobId = job.id;
+            dynamicOtp = job.otp_code;
+            
+            if (job.status === 'dispatched') {
+                if (lastStatus !== 'dispatched') {
+                    lastStatus = 'dispatched';
+                    if (typeof showState === 'function') showState(2);
+                }
+            } else if (job.status === 'en_route') {
+                if (lastStatus !== 'en_route') {
+                    lastStatus = 'en_route';
+                    if (typeof showState === 'function') showState(3);
+                }
+            } else if (job.status === 'completed') {
+                if (lastStatus !== 'completed') {
+                    lastStatus = 'completed';
+                    if (typeof showState === 'function') showState(1);
+                }
+            }
+            
+            if (job.assigned_helper_name) {
+                const el = document.getElementById('dynamicHelperName');
+                if(el) el.innerText = job.assigned_helper_name;
+                const initialEl = document.getElementById('helperInitials');
+                if (initialEl) initialEl.innerText = job.assigned_helper_name.substring(0, 2).toUpperCase();
+            }
+            
+            // UPDATE JOB CARD DETAILS
+            const jCat = document.getElementById('jobCategory');
+            if (jCat) jCat.innerText = job.category || 'Emergency';
+            
+            const jLoc = document.getElementById('jobLocation');
+            if (jLoc) {
+                jLoc.innerHTML = '<svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> ' + job.location + ' &mdash; <span class="text-primary">Near you</span>';
+            }
+            
+            const jSum = document.getElementById('jobSummary');
+            if (jSum) jSum.innerText = job.summary;
+            
+            const jTime = document.getElementById('jobTime');
+            if (jTime && job.created_at) {
+                const date = new Date(job.created_at);
+                jTime.innerText = "Today, " + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            }
+
+            
+            const nriNameEl = document.querySelector('[data-en="Connected"]');
+            if (nriNameEl && (job.status === 'dispatched' || job.status === 'en_route')) {
+                nriNameEl.innerText = "Dispatching to " + job.caller_name;
+            }
+        } else {
+            if (lastStatus !== null) {
+                lastStatus = null;
+                activeJobId = null;
+                if (typeof showState === 'function') showState(1);
+            }
+        }
+      } catch (e) {
+        console.error("Polling error:", e);
+      }
+    }
+
+    if (typeof io !== 'undefined') {
+        const socket = io();
+        socket.on('job:created', pollActiveJob);
+        socket.on('job:updated', pollActiveJob);
+    }
+    setInterval(pollActiveJob, 10000);
+
+    async function updateJobStatus(status) {
+        if (status === 'en_route') {
+            showState(3); 
+        } else if (status === 'completed') {
+            showState(1); 
+        }
+
+        if (!activeJobId) {
+            console.log("No active job to update.");
+            return;
+        }
+        try {
+            await fetch('/api/jobs/' + activeJobId + '/status', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status })
+            });
+        } catch (e) {
+            console.error("Failed to update status", e);
+        }
+    }
+
+    const tutorialSteps = [
+      { target: 'state1-job', text: 'Wait for an emergency job to appear here.' },
+      { target: 'btnAccept', text: 'Accept the job to confirm you are on your way.' },
+      { target: 'otp-inputs', text: 'Enter the OTP provided by the parent.' },
+      { target: 'completeBtn', text: 'Mark task complete once everything is resolved.' }
+    ];
+    let tutorial;
+    window.addEventListener('DOMContentLoaded', () => {
+      tutorial = new SpotlightTutorial(tutorialSteps, 'tutorial-helper-done');
+      setTimeout(() => tutorial.init(), 500);
+    });
+    function startTutorial(force = false) {
+      if (!tutorial) {
+        tutorial = new SpotlightTutorial(tutorialSteps, 'tutorial-helper-done');
+      }
+      tutorial.init(force);
+    }
+</script>
+  <script src="tutorial.js"></script>
+
+<script>
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playSound(type) {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    if (type === 'chime') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+        osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.1); // C6
+        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.05);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.5);
+    } else if (type === 'alert') {
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.2);
+        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.05);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.4);
+    }
+}
+function triggerVibration(pattern) {
+    if (navigator.vibrate) navigator.vibrate(pattern);
+}
+</script>
+</body>
+
+</html>

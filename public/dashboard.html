@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Ensure viewport is scalable for accessibility -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Bharat Care – Parent Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Load Figtree for a friendly, highly legible, accessible font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Figtree', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            bgLight: '#FAF9F6', // Warm off-white
+            bgDark: '#0A0A0A',  // True deep dark
+            surfaceLight: '#FFFFFF',
+            surfaceDark: '#171717',
+            borderLight: '#E5E5E5',
+            borderDark: '#262626',
+            primary: '#059669', // Strong emerald
+            primaryDark: '#047857',
+            alert: '#DC2626',   // Strong red for urgent states
+          },
+          boxShadow: {
+            // Tactile 3D shadows for the main button
+            'btn-3d': '0 8px 0 #047857, 0 15px 20px rgba(0,0,0,0.15)',
+            'btn-3d-active': '0 2px 0 #047857, 0 5px 10px rgba(0,0,0,0.1)',
+            'btn-3d-alert': '0 8px 0 #B91C1C, 0 15px 20px rgba(0,0,0,0.2)',
+            'btn-3d-alert-active': '0 2px 0 #B91C1C, 0 5px 10px rgba(0,0,0,0.15)',
+          }
+        },
+      },
+    };
+  </script>
+  <style>
+    /* Tactile button transition */
+    .btn-tactile {
+      transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-tactile:active {
+      transform: translateY(6px);
+    }
+
+    /* Subdued pulsing for connection state (not distracting) */
+    @keyframes subtle-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(0.98); }
+    }
+    .animate-subtle-pulse {
+      animation: subtle-pulse 2s ease-in-out infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-subtle-pulse, .btn-tactile {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+      }
+    }
+
+    /* OTP box styling - High contrast, heavy weight */
+    .otp-digit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 72px;
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      border-radius: 8px;
+    }
+    
+    /* Hide scrollbar for clean look */
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+
+<body class="bg-bgLight dark:bg-bgDark text-[#171717] dark:text-[#F5F5F5] antialiased min-h-screen flex flex-col transition-colors duration-300" style="-webkit-tap-highlight-color: transparent;">
+
+  <div class="flex-1 flex flex-col max-w-[480px] mx-auto w-full relative pb-20">
+
+    <!-- HEADER: Reassurance & Controls -->
+    <header class="px-6 py-5 flex items-center justify-between z-10">
+      <div class="flex items-center gap-3">
+        <!-- Status Indicator -->
+        <div class="relative flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800">
+          <div class="w-3 h-3 rounded-full bg-emerald-600 dark:bg-emerald-400"></div>
+        </div>
+        <div>
+          <h1 class="text-lg font-extrabold tracking-tight" data-en="Connected" data-hi="जुड़ा हुआ">Connected</h1>
+          <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest" data-en="System Online" data-hi="सिस्टम चालू">System Online</p>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex items-center gap-2">
+<a href="index.html" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none portal-home-btn" title="Back to Portal"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+        <!-- Help Button -->
+        <button onclick="startTutorial(true)" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white" title="Help">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-700 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </button>
+        <button id="themeToggle" onclick="toggleTheme()" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
+          <svg id="iconSun" class="hidden w-5 h-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+          </svg>
+          <svg id="iconMoon" class="w-5 h-5 text-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button id="langToggle" onclick="toggleLanguage()" class="h-11 px-4 rounded-full border-2 border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-sm font-bold focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
+          <span id="langLabel">हिंदी</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN ACTION AREA: The Giant Button -->
+    <main class="flex-1 flex flex-col items-center justify-center px-6 py-10 mt-4">
+      
+      <!-- Container to hold the button and prevent layout shift during states -->
+      <div class="h-[260px] flex items-center justify-center w-full">
+        
+        <!-- THE TACTILE BUTTON -->
+        <button
+          id="heroBtn"
+          onclick="handleHeroPress()"
+          class="btn-tactile relative w-[220px] h-[220px] rounded-[48px] bg-primary text-white shadow-btn-3d flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-4 dark:focus:ring-offset-bgDark"
+          aria-label="Press to call for help"
+        >
+          <svg id="heroIcon" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+          </svg>
+          
+          <div class="flex flex-col items-center">
+            <span id="heroText" class="text-2xl font-black tracking-tight" data-en="Call Now" data-hi="कॉल करें">Call Now</span>
+            <span id="heroSubtext" class="text-sm font-semibold opacity-90 mt-1" data-en="We will call you back" data-hi="हम आपको कॉल करेंगे">We will call you back</span>
+          </div>
+        </button>
+
+      </div>
+
+    </main>
+
+    <!-- INFORMATION / STATUS CARD -->
+    <!-- Positioned solidly at the bottom, mimicking a physical digital display panel -->
+    <div class="px-6 w-full">
+      <div id="statusPanel" class="w-full bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-6 shadow-sm transition-all duration-300">
+        
+        <!-- State 1: IDLE -->
+        <div id="card-idle" class="flex flex-col text-center">
+          <div class="w-12 h-12 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center mx-auto mb-4 text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+          </div>
+          <h2 class="text-xl font-bold mb-2" data-en="Ready to Help" data-hi="मदद के लिए तैयार">Ready to Help</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed" data-en="Tap the big green button above if you need a doctor, groceries, or any assistance." data-hi="अगर आपको डॉक्टर, किराने का सामान या कोई मदद चाहिए तो ऊपर हरा बटन दबाएं।">Tap the big green button above if you need a doctor, groceries, or any assistance.</p>
+        </div>
+
+        <!-- State 2: CONNECTING -->
+        <div id="card-connecting" class="hidden flex flex-col text-center animate-subtle-pulse">
+          <div class="w-12 h-12 rounded-full bg-alert/10 flex items-center justify-center mx-auto mb-4 text-alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <h2 class="text-xl font-bold text-alert mb-2" data-en="Calling Riya..." data-hi="रिया आपको कॉल कर रही है...">Riya is calling you...</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400 font-medium" data-en="Please wait. Your phone will ring in a few seconds." data-hi="कृपया प्रतीक्षा करें। आपका फोन कुछ ही सेकंड में बजेगा।">Please wait. Your phone will ring in a few seconds.</p>
+        </div>
+
+        <!-- State 3: HELPER ASSIGNED (OTP) -->
+        <div id="card-assigned" class="hidden flex flex-col">
+          <div class="flex items-center gap-4 border-b-2 border-borderLight dark:border-borderDark pb-6 mb-6">
+            <div id="parentHelperInitials" class="w-12 h-12 rounded-full bg-borderLight dark:bg-borderDark flex items-center justify-center font-black tracking-tighter text-slate-400">--</div>
+            <div>
+              <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-0.5" data-en="Helper Assigned" data-hi="सहायक नियुक्त">Helper Assigned</p>
+              <h2 id="parentHelperName" class="text-lg font-extrabold">Assigning Helper...</h2>
+              <p class="text-sm font-bold text-primary flex items-center gap-1 mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 00-4.8 5.766L4.743 12h-2.25a.75.75 0 000 1.5h1.993l1.83 4.271a11.21 11.21 0 004.8 5.765.75.75 0 001.032 0 11.209 11.209 0 004.8-5.766L18.784 13.5h1.966a.75.75 0 000-1.5h-2.22l-1.94-4.064a11.209 11.209 0 00-4.074-5.766zM6.5 12l1.63-3.804A9.715 9.715 0 0112 3.618a9.715 9.715 0 013.87 4.578L17.5 12h-11z" clip-rule="evenodd" />
+                </svg>
+                <span data-en="Arriving in 15 mins" data-hi="15 मिनट में पहुँच रहे हैं">Arriving in 15 mins</span>
+              </p>
+            </div>
+          </div>
+          
+          <div id="otpArea" class="pt-5 text-center">
+            <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3" data-en="Security Code (OTP)" data-hi="सुरक्षा कोड (OTP)">Security Code (OTP)</p>
+            <div class="flex justify-center gap-3" id="otpContainer">
+              <span id="otp1" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
+              <span id="otp2" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
+              <span id="otp3" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
+              <span id="otp4" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
+            </div>
+            <p class="text-sm font-semibold mt-4 text-alert bg-alert/10 py-2 px-4 rounded-xl inline-block" data-en="Do not share this on the phone" data-hi="इसे फोन पर किसी को न बताएं">Do not share this on the phone</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- FIXED FOOTER (Simple direct dial fallback) -->
+  <footer class="fixed bottom-0 w-full bg-surfaceLight dark:bg-surfaceDark border-t-2 border-borderLight dark:border-borderDark px-6 py-4 z-10">
+    <div class="max-w-[480px] mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div>
+          <p class="text-sm font-bold" data-en="Call Rahul (Son)" data-hi="राहुल (बेटा) को कॉल करें">Call Rahul (Son)</p>
+          <p class="text-xs text-slate-500 font-semibold">+91 98765 43210</p>
+        </div>
+      </div>
+      <a href="tel:+919876543210" class="h-10 px-4 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-sm flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-slate-500" data-en="Direct Call" data-hi="सीधा कॉल">
+        Direct Call
+      </a>
+    </div>
+  </footer>
+
+  <!-- DEBUG DEMO BAR (Pitch / Testing) -->
+  <div class="fixed top-0 left-0 w-full bg-black text-white text-[10px] font-bold p-1 flex justify-center gap-4 z-50 opacity-20 hover:opacity-100 transition-opacity">
+    <span class="text-gray-400">DEMO STATES:</span>
+    <button onclick="setState('idle')" class="hover:text-emerald-400 uppercase tracking-widest">Idle</button>
+    <button onclick="setState('connecting')" class="hover:text-amber-400 uppercase tracking-widest">Calling</button>
+    <button onclick="setState('helper_assigned')" class="hover:text-emerald-400 uppercase tracking-widest">Helper OTP</button>
+  </div>
+
+  <script>
+    // --- STATE MACHINE ---
+    let appState = 'idle'; // idle, connecting, helper_assigned
+
+    function setState(newState) {
+      appState = newState;
+      
+      const btn = document.getElementById('heroBtn');
+      const icon = document.getElementById('heroIcon');
+      const txt = document.getElementById('heroText');
+      const subtxt = document.getElementById('heroSubtext');
+      const isHi = localStorage.getItem('bharatcare-lang') === 'hi';
+      
+      // Reset cards
+      document.getElementById('card-idle').classList.add('hidden');
+      document.getElementById('card-connecting').classList.add('hidden');
+      document.getElementById('card-assigned').classList.add('hidden');
+
+      if (newState === 'idle') {
+        document.getElementById('card-idle').classList.remove('hidden');
+        
+        btn.className = 'btn-tactile relative w-[220px] h-[220px] rounded-[48px] bg-primary text-white shadow-btn-3d flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-4 dark:focus:ring-offset-bgDark';
+        txt.textContent = isHi ? "कॉल करें" : "Call Now";
+        subtxt.textContent = isHi ? "हम आपको कॉल करेंगे" : "We will call you back";
+        icon.innerHTML = '<path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />';
+      } 
+      else if (newState === 'connecting') {
+        document.getElementById('card-connecting').classList.remove('hidden');
+        
+        btn.className = 'btn-tactile relative w-[220px] h-[220px] rounded-[48px] bg-alert text-white shadow-btn-3d-alert flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-alert focus:ring-offset-4 dark:focus:ring-offset-bgDark';
+        txt.textContent = isHi ? "रद्द करें" : "Cancel Call";
+        subtxt.textContent = isHi ? "दबाकर रोकें" : "Press to stop";
+        icon.innerHTML = '<path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />';
+      }
+      else if (newState === 'helper_assigned') {
+        document.getElementById('card-assigned').classList.remove('hidden');
+        
+        btn.className = 'btn-tactile relative w-[220px] h-[220px] rounded-[48px] bg-primary text-white shadow-btn-3d flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-4 dark:focus:ring-offset-bgDark opacity-60 pointer-events-none';
+        txt.textContent = isHi ? "सहायक आ रहा है" : "Helper on way";
+        subtxt.textContent = isHi ? "नीचे OTP देखें" : "See OTP below";
+        icon.innerHTML = '<path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />';
+      }
+    }
+
+    
+    let dashPollInterval;
+    let dashActiveJobId = null;
+
+    function updateOTP(otp) {
+        if (!otp) return;
+        document.getElementById('otp1').innerText = otp[0] || '-';
+        document.getElementById('otp2').innerText = otp[1] || '-';
+        document.getElementById('otp3').innerText = otp[2] || '-';
+        document.getElementById('otp4').innerText = otp[3] || '-';
+    }
+
+    async function pollJobStatus() {
+        try {
+            if (!dashActiveJobId) {
+                // Try to sync with an already active job on page load
+                const res = await fetch('/api/jobs/active');
+                const activeJob = await res.json();
+                if (activeJob && activeJob.id) {
+                    dashActiveJobId = activeJob.id;
+                    if (appState !== 'helper_assigned') {
+                        setState('helper_assigned');
+                    }
+                    if (activeJob.assigned_helper_name) {
+                        const el = document.getElementById('parentHelperName');
+                        if(el) el.innerText = activeJob.assigned_helper_name;
+                        const initialEl = document.getElementById('parentHelperInitials');
+                        if (initialEl) initialEl.innerText = activeJob.assigned_helper_name.substring(0, 2).toUpperCase();
+                    }
+                    if (activeJob.otp_code) updateOTP(activeJob.otp_code);
+                }
+                return;
+            }
+
+            // We have a known job, track its exact status
+            const res = await fetch('/api/jobs');
+            const jobs = await res.json();
+            const myJob = jobs.find(j => j.id === dashActiveJobId);
+            
+            if (myJob) {
+                if (myJob.status === 'dispatched' || myJob.status === 'en_route') {
+                    if (appState !== 'helper_assigned') {
+                        setState('helper_assigned');
+                    }
+                    if (myJob.assigned_helper_name) {
+                        const el = document.getElementById('parentHelperName');
+                        if(el) el.innerText = myJob.assigned_helper_name;
+                        const initialEl = document.getElementById('parentHelperInitials');
+                        if (initialEl) initialEl.innerText = myJob.assigned_helper_name.substring(0, 2).toUpperCase();
+                    }
+                    if (myJob.otp_code) updateOTP(myJob.otp_code);
+                } else if (myJob.status === 'completed') {
+                    if (appState !== 'idle') {
+                        setState('idle');
+                    }
+                    dashActiveJobId = null;
+                }
+            }
+        } catch(e) {
+            console.error(e);
+        }
+    }
+
+    // Socket.io integration
+    if (typeof io !== 'undefined') {
+        const socket = io();
+        socket.on('job:created', pollJobStatus);
+        socket.on('job:updated', pollJobStatus);
+    }
+    
+    // Start polling immediately on load
+    dashPollInterval = setInterval(pollJobStatus, 2000);
+
+    async function postEmergencyJob() {
+        try {
+            const caller = localStorage.getItem('parentProfileName') || "Parent Device";
+            const loc = localStorage.getItem('parentProfileLoc') || "Home Location";
+            const res = await fetch('/api/jobs', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    caller_name: caller,
+                    location: loc,
+                    urgency_level: "emergency",
+                    category: "Medical",
+                    required_skill: "Paramedic",
+                    summary: "SOS Triggered from Parent Dashboard",
+                    followup_action: "Call Emergency Contacts",
+                    escalate_to_emergency: true
+                })
+            });
+            const data = await res.json();
+            if (data.id) {
+                dashActiveJobId = data.id;
+            }
+        } catch(e) {
+            console.error(e);
+        }
+    }
+
+    function handleHeroPress() {
+      if (appState === 'idle') {
+        setState('connecting'); playSound('alert'); triggerVibration([200, 100, 200]);
+        postEmergencyJob(); // Sends real job to API if backend is running
+        
+      } else if (appState === 'connecting') {
+        setState('idle');
+      }
+    }
+
+    // --- LANGUAGE TOGGLE ---
+    function applyLanguage(lang) {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
+      document.getElementById('langLabel').textContent = lang === 'en' ? 'हिंदी' : 'EN';
+      
+      // Re-trigger state to update button text
+      setState(appState);
+    }
+
+    function toggleLanguage() {
+      const current = localStorage.getItem('bharatcare-lang') || 'en';
+      const next = current === 'en' ? 'hi' : 'en';
+      localStorage.setItem('bharatcare-lang', next);
+      applyLanguage(next);
+    }
+
+    // --- THEME TOGGLE ---
+    function applyTheme(theme) {
+      const sunIcon = document.getElementById('iconSun');
+      const moonIcon = document.getElementById('iconMoon');
+
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const nextTheme = isDark ? 'light' : 'dark';
+      localStorage.setItem('bharatcare-theme', nextTheme);
+      applyTheme(nextTheme);
+    }
+
+    // --- INIT ---
+    (function init() {
+      const savedTheme = localStorage.getItem('bharatcare-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      applyTheme(savedTheme);
+      
+      const savedLang = localStorage.getItem('bharatcare-lang') || 'en';
+      applyLanguage(savedLang);
+      
+      setState('idle');
+    })();
+
+    const tutorialSteps = [
+      { target: 'heroBtn', text: 'Press this big button to simulate an emergency call.' },
+      { target: 'statusPanel', text: 'Watch for a helper to be assigned in this area.' },
+      { target: 'otpArea', text: 'Share this OTP with the helper when they arrive.' }
+    ];
+    let tutorial;
+    window.addEventListener('DOMContentLoaded', () => {
+      tutorial = new SpotlightTutorial(tutorialSteps, 'tutorial-dashboard-done');
+      // Adding a small delay to ensure rendering is complete
+      setTimeout(() => tutorial.init(), 500);
+    });
+    function startTutorial(force = false) {
+      if (!tutorial) {
+        tutorial = new SpotlightTutorial(tutorialSteps, 'tutorial-dashboard-done');
+      }
+      tutorial.init(force);
+    }
+  </script>
+  <script src="tutorial.js"></script>
+
+<script>
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playSound(type) {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    if (type === 'chime') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+        osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.1); // C6
+        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.05);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.5);
+    } else if (type === 'alert') {
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.2);
+        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.05);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.4);
+    }
+}
+function triggerVibration(pattern) {
+    if (navigator.vibrate) navigator.vibrate(pattern);
+}
+</script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "caller_name": "Sunita",
+  "location": "Amritsar, Punjab",
+  "urgency_level": "routine",
+  "category": "household",
+  "required_skill": "electrician",
+  "summary": "Namaste, main Riya bol rahi hoon. Aapka naam kya hai? Main Sunita bol rahi hoon. Bataiye Sunita ji, kya madad kar sakti hoon? Beta geyser nahi chal raha. Paani garam hi nahi ho raha hai aur thande paani se main nahati nahi. Switch on karne par koi light jal rahi hai ya koi aawaz ya smell aa rahi hai? Light toh jalti hai par paani thanda hi rehta hai. Koi smell bhi nahi hai. Theek hai Sunita ji, main ek skill helper bhijva deti hoon. Aapka location bata dijiye? Main Amritsar, Punjab se hoon. Aaj shaam ko aap ghar honge? Haan, 5:00 baje ke baad ghar par hi rahoongi. Theek hai, aaj shaam 5:00 baje ke baad ek skill helper aa jayega. Aap tab tak geyser band rakhiyega.",
+  "followup_action": "None",
+  "escalate_to_emergency": false,
+  "raw_transcript": "Namaste, main Riya bol rahi hoon. Aapka naam kya hai? Main Sunita bol rahi hoon. Bataiye Sunita ji, kya madad kar sakti hoon? Beta geyser nahi chal raha. Paani garam hi nahi ho raha hai aur thande paani se main nahati nahi. Switch on karne par koi light jal rahi hai ya koi aawaz ya smell aa rahi hai? Light toh jalti hai par paani thanda hi rehta hai. Koi smell bhi nahi hai. Theek hai Sunita ji, main ek skill helper bhijva deti hoon. Aapka location bata dijiye? Main Amritsar, Punjab se hoon. Aaj shaam ko aap ghar honge? Haan, 5:00 baje ke baad ghar par hi rahoongi. Theek hai, aaj shaam 5:00 baje ke baad ek skill helper aa jayega. Aap tab tak geyser band rakhiyega.",
+  "raw_triage": {
+    "hinglish_transcript": "Namaste, main Riya bol rahi hoon. Aapka naam kya hai? Main Sunita bol rahi hoon. Bataiye Sunita ji, kya madad kar sakti hoon? Beta geyser nahi chal raha. Paani garam hi nahi ho raha hai aur thande paani se main nahati nahi. Switch on karne par koi light jal rahi hai ya koi aawaz ya smell aa rahi hai? Light toh jalti hai par paani thanda hi rehta hai. Koi smell bhi nahi hai. Theek hai Sunita ji, main ek skill helper bhijva deti hoon. Aapka location bata dijiye? Main Amritsar, Punjab se hoon. Aaj shaam ko aap ghar honge? Haan, 5:00 baje ke baad ghar par hi rahoongi. Theek hai, aaj shaam 5:00 baje ke baad ek skill helper aa jayega. Aap tab tak geyser band rakhiyega.",
+    "caller_name": "Sunita",
+    "location": "Amritsar, Punjab",
+    "category": "household",
+    "urgency": "routine",
+    "escalate_to_emergency_services": false,
+    "helper_skill": "electrician",
+    "when": "Aaj shaam 5:00 baje ke baad",
+    "needs_followup": false,
+    "followup_reason": null
+  }
+}

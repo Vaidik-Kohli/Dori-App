@@ -1,0 +1,31 @@
+{
+  "name": "bharat-care-app",
+  "version": "1.0.0",
+  "description": "Helper Routing System & Care Coordination Platform for Elderly Parents (Bharat Innovation Challenge 2.0)",
+  "main": "src/triage_copilot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/triage_copilot.js",
+    "server": "node server.js",
+    "copilot": "node src/triage_copilot.js",
+    "generate-scripts": "python scripts/make_scripts.py",
+    "format-scripts": "python scripts/format_for_sharing.py"
+  },
+  "keywords": [
+    "elderly-care",
+    "ai-copilot",
+    "triage",
+    "gemini",
+    "accessibility"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^2.23.0",
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.1",
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3"
+  }
+}

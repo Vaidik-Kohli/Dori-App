@@ -1,0 +1,423 @@
+{
+  "operator": "Riya",
+  "scripts": [
+    {
+      "id": 1,
+      "type": "routine",
+      "title": "Groceries and BP medicine",
+      "transcript": [
+        {
+          "speaker": "Operator",
+          "line": "Namaste aunty ji, main Riya bol rahi hoon. Bataiye, kya madad chahiye?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Beta, ghar mein ration khatam ho gaya hai. Aur meri BP ki dawai bhi lani hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Theek hai aunty ji. Ration mein kya kya chahiye? Aur dawai ka naam bata dijiye."
+        },
+        {
+          "speaker": "Parent",
+          "line": "Aata, chawal, dal aur tel. Dawai ka parcha mere paas hai, chemist ko dikhana padega."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Koi baat nahi, helper parcha saath le jayega. Kab tak chahiye?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Kal subah tak ho jaye toh achha hai. Paise main de dungi."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Theek hai, kal subah tak helper aa jayega. Kuch aur chahiye?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Nahi beta, bas itna hi. Jeete raho."
+        }
+      ],
+      "expected": {
+        "category": "errand",
+        "urgency": "routine",
+        "escalate_to_emergency_services": false,
+        "helper_skill": "errand runner (groceries + chemist, prescription in hand)",
+        "when": "tomorrow morning",
+        "needs_followup": false,
+        "followup_reason": null
+      }
+    },
+    {
+      "id": 2,
+      "type": "routine",
+      "title": "Eye checkup, needs someone to go along",
+      "transcript": [
+        {
+          "speaker": "Operator",
+          "line": "Namaste uncle ji, main Riya bol rahi hoon. Bataiye, kya madad chahiye?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Beta, Thursday ko meri aankhon ka checkup hai, 11 baje. Akele jana mushkil hai, sadak paar karni padti hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Bilkul, koi saath jayega. Clinic ka naam aur kitni door hai?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Sunrise Eye Clinic. Ghar se do kilometer hoga, ek ghanta toh lag hi jayega."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Aap chal sakte hain ya wheelchair chahiye?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Chal sakta hoon, bas dheere dheere. Bas ek sahara chahiye, aur auto bhi karwana hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Theek hai, Thursday 11 baje ke liye helper aayega. Wapas ghar bhi chhod dega."
+        },
+        {
+          "speaker": "Parent",
+          "line": "Bahut achha beta, shukriya."
+        }
+      ],
+      "expected": {
+        "category": "accompaniment",
+        "urgency": "routine",
+        "escalate_to_emergency_services": false,
+        "helper_skill": "escort (walking support, auto, round trip)",
+        "when": "Thursday 11:00",
+        "needs_followup": false,
+        "followup_reason": null
+      }
+    },
+    {
+      "id": 3,
+      "type": "routine",
+      "title": "Geyser not heating",
+      "transcript": [
+        {
+          "speaker": "Operator",
+          "line": "Namaste aunty ji, main Riya bol rahi hoon. Bataiye."
+        },
+        {
+          "speaker": "Parent",
+          "line": "Beta, geyser chal nahi raha. Pani garam hi nahi ho raha, aur thande pani se main nahi nahati."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Switch on karne par light jalti hai? Koi awaaz ya jalne ki smell aati hai?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Light toh jalti hai, par pani thanda hi rehta hai. Koi smell nahi hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Theek hai, main electrician bhejti hoon. Aaj shaam ko aap ghar par hongi?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Haan, paanch baje ke baad ghar par hi rahungi."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Done. Aaj shaam paanch baje ke baad electrician aa jayega. Tab tak geyser band rakhiye."
+        }
+      ],
+      "expected": {
+        "category": "home_repair",
+        "urgency": "routine",
+        "escalate_to_emergency_services": false,
+        "helper_skill": "electrician",
+        "when": "today after 17:00",
+        "needs_followup": false,
+        "followup_reason": null
+      },
+      "caller_name": "Sunita",
+      "location": "Amritsar, Punjab"
+    },
+    {
+      "id": 4,
+      "type": "routine",
+      "title": "Video call screen is black",
+      "transcript": [
+        {
+          "speaker": "Operator",
+          "line": "Namaste uncle ji, main Riya bol rahi hoon. Kya madad chahiye?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Beta, mere phone par video call nahi lag rahi. Bete ka call aata hai, awaaz aati hai par screen kaali dikhti hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Achha, aapne camera ke liye koi setting badli thi kya?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Pata nahi beta. Pichle hafte phone gir gaya tha, tab se yeh dikkat hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Koi baat nahi, ek helper aayega jo phone theek se samjhata hai. Kab convenient rahega?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Kal dopahar teen baje ke baad, jab main aaram kar leta hoon."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Theek hai, kal teen baje ke baad. Main aapke bete ko bhi bata dungi."
+        }
+      ],
+      "expected": {
+        "category": "tech_help",
+        "urgency": "routine",
+        "escalate_to_emergency_services": false,
+        "helper_skill": "tech-savvy helper (smartphone troubleshooting)",
+        "when": "tomorrow after 15:00",
+        "needs_followup": false,
+        "followup_reason": null
+      }
+    },
+    {
+      "id": 5,
+      "type": "routine",
+      "title": "Bank passbook and pension paperwork",
+      "transcript": [
+        {
+          "speaker": "Operator",
+          "line": "Namaste aunty ji, main Riya bol rahi hoon. Bataiye, kya madad chahiye?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Beta, bank jaana hai. Passbook mein entry karwani hai aur pension ka kagaz bhi jama karna hai. Akele line mein khadi nahi ho pati."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Kagaz aapke paas hain? Aur bank paas mein hai?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Haan, kagaz folder mein rakhe hain. Bank paas wali branch hai, paidal ka raasta hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Theek hai, helper aapke saath jayega aur line mein madad karega. Kab jana chahengi?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Is hafte koi bhi din chalega, subah dus baje ke baad."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Main kal aapko confirm karti hoon ki kaunsa din fix hua."
+        }
+      ],
+      "expected": {
+        "category": "accompaniment",
+        "urgency": "routine",
+        "escalate_to_emergency_services": false,
+        "helper_skill": "escort + paperwork errand (bank)",
+        "when": "this week, any day after 10:00 (day to be confirmed)",
+        "needs_followup": false,
+        "followup_reason": null
+      }
+    },
+    {
+      "id": 6,
+      "type": "emergency",
+      "title": "Chest pain, alone at home",
+      "transcript": [
+        {
+          "speaker": "Operator",
+          "line": "Namaste aunty ji, main Riya bol rahi hoon. Bataiye."
+        },
+        {
+          "speaker": "Parent",
+          "line": "Beta... seene mein bahut dard ho raha hai... pasina bhi aa raha hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Aunty ji, main aapke saath hoon. Aap ghar mein akeli hain?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Haan, akeli hoon. Dard baayein haath tak ja raha hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Aap baith jaiye aur kuch mat kijiye. Main abhi ambulance bhej rahi hoon aur aapke bete ko bhi bata rahi hoon. Darwaza khol sakti hain?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Haan... main kholti hoon."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Line par bani rahiye, ambulance raaste mein hai."
+        }
+      ],
+      "expected": {
+        "category": "medical",
+        "urgency": "emergency",
+        "escalate_to_emergency_services": true,
+        "helper_skill": "none (ambulance + hospital); nearby helper only to assist",
+        "when": "immediate",
+        "needs_followup": false,
+        "followup_reason": null
+      }
+    },
+    {
+      "id": 7,
+      "type": "emergency",
+      "title": "Fall in the bathroom, cannot get up",
+      "transcript": [
+        {
+          "speaker": "Operator",
+          "line": "Namaste aunty ji, main Riya bol rahi hoon. Kya hua?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Beta, main bathroom mein gir gayi hoon. Uth nahi pa rahi. Kamar aur kulhe mein bahut dard hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Aunty ji, hilne ki koshish mat kijiye. Sar par chot lagi hai? Khoon nikal raha hai?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Sar par chot nahi lagi, khoon bhi nahi hai. Bas dard bahut hai. Darwaza band nahi hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Theek hai, main abhi ambulance bhej rahi hoon aur paas ka helper bhi pahunch raha hai. Main line par hoon."
+        }
+      ],
+      "expected": {
+        "category": "medical",
+        "urgency": "emergency",
+        "escalate_to_emergency_services": true,
+        "helper_skill": "none (ambulance); nearby helper only to assist",
+        "when": "immediate",
+        "needs_followup": false,
+        "followup_reason": null
+      }
+    },
+    {
+      "id": 8,
+      "type": "emergency",
+      "title": "Breathlessness and cough",
+      "transcript": [
+        {
+          "speaker": "Operator",
+          "line": "Namaste uncle ji, main Riya bol rahi hoon. Bataiye."
+        },
+        {
+          "speaker": "Parent",
+          "line": "Beta... saans phool rahi hai. Raat se khansi thi, ab bolna bhi mushkil ho raha hai."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Uncle ji, aap seedhe baithe hain? Ghar par inhaler ya oxygen hai?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Inhaler hai... par usse aaram nahi mil raha."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Main abhi ambulance bhej rahi hoon aur aapke bete ko call kar rahi hoon. Inhaler haath mein rakhiye, main line par hoon."
+        }
+      ],
+      "expected": {
+        "category": "medical",
+        "urgency": "emergency",
+        "escalate_to_emergency_services": true,
+        "helper_skill": "none (ambulance + hospital)",
+        "when": "immediate",
+        "needs_followup": false,
+        "followup_reason": null
+      }
+    },
+    {
+      "id": 9,
+      "type": "unclear",
+      "title": "Vaguely unwell, alone at home",
+      "transcript": [
+        {
+          "speaker": "Operator",
+          "line": "Namaste uncle ji, main Riya bol rahi hoon. Bataiye, kya madad chahiye?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Beta, kuch theek nahi lag raha... bas aisa hi hai. Thoda chakkar sa aa raha hai. Ghar mein akela hoon."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Chakkar kab se aa raha hai? Aap baithe hain ya khade?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Pata nahi... shayad subah se. Tum chinta mat karo, main thodi der aaram kar leta hoon."
+        }
+      ],
+      "expected": {
+        "category": "medical",
+        "urgency": "urgent",
+        "escalate_to_emergency_services": false,
+        "helper_skill": "none yet; operator or nurse check-in",
+        "when": "as soon as possible",
+        "needs_followup": true,
+        "followup_reason": "Symptoms unclear (dizziness since morning, alone at home). Probe and re-check soon. Must not be marked routine."
+      }
+    },
+    {
+      "id": 10,
+      "type": "unclear",
+      "title": "Wants 'the boy from yesterday' back, cannot say why",
+      "transcript": [
+        {
+          "speaker": "Operator",
+          "line": "Namaste aunty ji, main Riya bol rahi hoon. Bataiye."
+        },
+        {
+          "speaker": "Parent",
+          "line": "Beta, woh ladka jo kal aaya tha na? Usko dobara bhej do. Kaam adhura reh gaya."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Kaunsa kaam aunty ji? Kal koi helper aaya tha?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Haan haan, wahi. Upar wale kamre mein woh cheez theek karni thi."
+        },
+        {
+          "speaker": "Operator",
+          "line": "Kaunsi cheez aunty ji?"
+        },
+        {
+          "speaker": "Parent",
+          "line": "Yaad nahi aa raha, tum dekh lo."
+        }
+      ],
+      "expected": {
+        "category": "unclear",
+        "urgency": "routine",
+        "escalate_to_emergency_services": false,
+        "helper_skill": "same helper as yesterday, if the visit log confirms",
+        "when": "not stated",
+        "needs_followup": true,
+        "followup_reason": "Task not identified. Check yesterday's visit log and call back to confirm. The copilot must not invent a task."
+      }
+    }
+  ]
+}

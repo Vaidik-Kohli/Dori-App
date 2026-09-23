@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bharat Care – Unified Care Coordination Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Figtree', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            bgLight: '#FAF9F6',
+            bgDark: '#0A0A0A',
+            surfaceLight: '#FFFFFF',
+            surfaceDark: '#171717',
+            borderLight: '#E5E5E5',
+            borderDark: '#262626',
+            primary: '#059669',
+            blueUI: '#2563EB',
+          },
+          boxShadow: {
+            'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+          }
+        },
+      },
+    };
+  </script>
+  <style>
+    .portal-card {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .portal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: theme('boxShadow.card-hover');
+      border-color: theme('colors.primary');
+    }
+    .dark .portal-card:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-bgLight dark:bg-bgDark text-[#171717] dark:text-[#F5F5F5] antialiased min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- HEADER -->
+  <header class="px-8 py-6 flex items-center justify-between border-b-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-surfaceDark shrink-0">
+    <div class="flex items-center gap-4">
+      <div class="w-10 h-10 rounded-[12px] bg-primary flex items-center justify-center text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-xl font-black tracking-tight">Bharat Care</h1>
+        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">Stage 1 Prototype</p>
+      </div>
+    </div>
+    
+    <button id="themeToggle" onclick="toggleTheme()" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none">
+      <svg id="iconSun" class="hidden w-5 h-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" /></svg>
+      <svg id="iconMoon" class="w-5 h-5 text-slate-700 dark:text-slate-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd" /></svg>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <main class="flex-1 flex flex-col items-center justify-center p-8 max-w-6xl mx-auto w-full">
+    
+    <div class="text-center mb-16 max-w-2xl">
+      <h2 class="text-4xl md:text-5xl font-black mb-6 tracking-tight">Unified Care Coordination</h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+        Select a portal below to interact with the different views of the Bharat Care ecosystem. 
+        In the final production build, these distinct views will be bundled into a single application with Role-Based Access Control (RBAC).
+      </p>
+    </div>
+
+    <!-- GRID OF PORTALS -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+      
+      <!-- Parent View -->
+      <a href="dashboard.html" class="portal-card bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-8 flex flex-col items-center text-center group cursor-pointer">
+        <div class="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3 class="text-xl font-black mb-2">Parent App</h3>
+        <p class="text-sm text-slate-500 font-medium">The ultra-accessible, single-button emergency dialer for the elderly.</p>
+        <span class="mt-6 text-xs font-bold uppercase tracking-widest text-primary">Open View &rarr;</span>
+      </a>
+
+      <!-- NRI View -->
+      <a href="nri-app.html" class="portal-card bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-8 flex flex-col items-center text-center group cursor-pointer">
+        <div class="w-16 h-16 rounded-full bg-blueUI/10 text-blueUI flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-9 5 18 2-9h5"/></svg>
+        </div>
+        <h3 class="text-xl font-black mb-2">Family/NRI App</h3>
+        <p class="text-sm text-slate-500 font-medium">The peace-of-mind live event tracker for children living abroad.</p>
+        <span class="mt-6 text-xs font-bold uppercase tracking-widest text-blueUI">Open View &rarr;</span>
+      </a>
+
+      <!-- Helper View -->
+      <a href="helper-app.html" class="portal-card bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-8 flex flex-col items-center text-center group cursor-pointer">
+        <div class="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3 class="text-xl font-black mb-2">Helper App</h3>
+        <p class="text-sm text-slate-500 font-medium">The gig-worker routing and secure OTP task verification tool.</p>
+        <span class="mt-6 text-xs font-bold uppercase tracking-widest text-slate-500">Open View &rarr;</span>
+      </a>
+
+      <!-- Operator View -->
+      <a href="login.html" class="portal-card bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-8 flex flex-col items-center text-center group cursor-pointer">
+        <div class="w-16 h-16 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
+        </div>
+        <h3 class="text-xl font-black mb-2">Operator Console</h3>
+        <p class="text-sm text-slate-500 font-medium">The desktop mission-control for triage and helper dispatch.</p>
+        <span class="mt-6 text-xs font-bold uppercase tracking-widest text-slate-800 dark:text-slate-200">Open View &rarr;</span>
+      </a>
+
+    </div>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const nextTheme = isDark ? 'light' : 'dark';
+      
+      const sunIcon = document.getElementById('iconSun');
+      const moonIcon = document.getElementById('iconMoon');
+      
+      if (nextTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+      localStorage.setItem('bharatcare-theme', nextTheme);
+    }
+
+
+    (function init() {
+      const savedTheme = localStorage.getItem('bharatcare-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      if (savedTheme === 'dark') toggleTheme();
+      
+      const opLink = document.querySelector('a[href="login.html"]');
+      if (opLink && localStorage.getItem('operatorAuth') === 'true') {
+        opLink.href = 'operator-console.html';
+      }
+    })();
+
+  </script>
+</body>
+</html>
