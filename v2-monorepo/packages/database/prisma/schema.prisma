@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  role      Role     // PARENT, NRI, HELPER, OPERATOR
+  name      String
+  phone     String   @unique
+  location  String?  // Coordinates or Address
+  
+  // Relations
+  parentJobs Job[]   @relation("ParentJobs")
+  helperJobs Job[]   @relation("HelperJobs")
+}
+
+model Job {
+  id             String    @id @default(uuid())
+  parentId       String
+  helperId       String?
+  operatorId     String?
+  
+  status         JobStatus // PENDING, DISPATCHED, EN_ROUTE, COMPLETED
+  category       String?   // e.g., "Tech Troubleshooting"
+  summary        String?
+  urgencyLevel   String?   // ROUTINE, URGENT, EMERGENCY
+  otpCode        String    // 4-digit code
+  transcript     String?   // Raw text of the call
+  
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  parent         User      @relation("ParentJobs", fields: [parentId], references: [id])
+  helper         User?     @relation("HelperJobs", fields: [helperId], references: [id])
+}
+
+enum Role {
+  PARENT
+  NRI
+  HELPER
+  OPERATOR
+}
+
+enum JobStatus {
+  PENDING
+  DISPATCHED
+  EN_ROUTE
+  COMPLETED
+}
