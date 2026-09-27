@@ -84,12 +84,16 @@
 
         // Render Tooltip
         let btnHtml = step.button ? `<button id="doriTutBtn" style="margin-top:15px; width:100%; padding:10px; border-radius:10px; background:#10b981; color:white; font-weight:bold; border:none; cursor:pointer;">${step.button}</button>` : '';
-        tooltip.innerHTML = `<div style="font-size:14px; line-height:1.5;">${step.text}</div>${btnHtml}`;
+        let skipHtml = `<button id="doriTutSkip" style="display:block; margin: 12px auto 0; background:transparent; border:none; color: #9ca3af; font-size:12px; cursor:pointer; text-decoration:underline;">Skip Tutorial</button>`;
+        tooltip.innerHTML = `<div style="font-size:14px; line-height:1.5;">${step.text}</div>${btnHtml}${skipHtml}`;
+        
+        document.getElementById('doriTutSkip').onclick = () => {
+            localStorage.setItem('dori-tut-done-tutorial-helper', 'true');
+            endTutorial();
+        };
         
         if(step.button) {
-            document.getElementById('doriTutBtn').onclick = () => {
-                endTutorial();
-            };
+            document.getElementById('doriTutBtn').onclick = () => { localStorage.setItem('dori-tut-done-tutorial-helper', 'true'); endTutorial(); };
         }
 
         // Position tooltip
@@ -117,6 +121,7 @@
 
     window.addEventListener('load', () => {
         // Start tutorial step 1
+        if (localStorage.getItem('dori-tut-done-tutorial-helper')) return;
         setTimeout(() => advance(1), 500);
 
         // Intercept showState
