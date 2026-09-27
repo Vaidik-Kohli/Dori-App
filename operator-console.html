@@ -261,7 +261,7 @@
               </div>
 
               <!-- Details Grid -->
-              <div class="grid grid-cols-2 gap-4 mb-8">
+              <div id="metadataGrid" class="grid grid-cols-2 gap-4 mb-8">
                 <div class="col-span-2 p-5 rounded-[16px] border-2 border-borderLight dark:border-borderDark bg-bgLight dark:bg-[#1A1A1A]">
                   <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">Issue Reported</p>
                   <p id="card-issue" class="text-base font-bold leading-relaxed">Video call screen is black. Audio works but camera shows nothing. Phone was dropped last week.</p>
@@ -761,6 +761,6 @@ function triggerVibration(pattern) {
     if (navigator.vibrate) navigator.vibrate(pattern);
 }
 </script>
-</body>
+<script src="tutorial-operator.js"></script></body>
 
 </html>
