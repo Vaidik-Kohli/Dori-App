@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bharat Care – Unified Care Coordination Platform</title>
+  <title>Dori – Unified Care Coordination Platform</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,7 @@
         </svg>
       </div>
       <div>
-        <h1 class="text-xl font-black tracking-tight">Bharat Care</h1>
+        <h1 class="text-xl font-black tracking-tight">Dori</h1>
         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">Stage 1 Prototype</p>
       </div>
     </div>
@@ -75,7 +75,7 @@
     <div class="text-center mb-16 max-w-2xl">
       <h2 class="text-4xl md:text-5xl font-black mb-6 tracking-tight">Unified Care Coordination</h2>
       <p class="text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-        Select a portal below to interact with the different views of the Bharat Care ecosystem. 
+        Select a portal below to interact with the different views of the Dori ecosystem. 
         In the final production build, these distinct views will be bundled into a single application with Role-Based Access Control (RBAC).
       </p>
     </div>
@@ -143,12 +143,12 @@
         sunIcon.classList.add('hidden');
         moonIcon.classList.remove('hidden');
       }
-      localStorage.setItem('bharatcare-theme', nextTheme);
+      localStorage.setItem('Dori-theme', nextTheme);
     }
 
 
     (function init() {
-      const savedTheme = localStorage.getItem('bharatcare-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const savedTheme = localStorage.getItem('Dori-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       if (savedTheme === 'dark') toggleTheme();
       
       const opLink = document.querySelector('a[href="login.html"]');

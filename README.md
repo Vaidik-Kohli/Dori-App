@@ -1,6 +1,6 @@
-# Bharat Care - Demo App
+# Dori - Demo App
 
-This is the static frontend demo for Bharat Care. 
+This is the static frontend demo for Dori. 
 
 ## How to run the Demo
 Because this is a 100% hardcoded static frontend (optimized for live pitch presentations), there is no backend or database required.

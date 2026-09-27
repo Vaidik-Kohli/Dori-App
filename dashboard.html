@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <!-- Ensure viewport is scalable for accessibility -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Bharat Care – Parent Dashboard</title>
+  <title>Dori – Parent Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- Load Figtree for a friendly, highly legible, accessible font -->
@@ -255,7 +255,7 @@
       const icon = document.getElementById('heroIcon');
       const txt = document.getElementById('heroText');
       const subtxt = document.getElementById('heroSubtext');
-      const isHi = localStorage.getItem('bharatcare-lang') === 'hi';
+      const isHi = localStorage.getItem('Dori-lang') === 'hi';
       
       // Reset cards
       document.getElementById('card-idle').classList.add('hidden');
@@ -352,9 +352,9 @@
     }
 
     function toggleLanguage() {
-      const current = localStorage.getItem('bharatcare-lang') || 'en';
+      const current = localStorage.getItem('Dori-lang') || 'en';
       const next = current === 'en' ? 'hi' : 'en';
-      localStorage.setItem('bharatcare-lang', next);
+      localStorage.setItem('Dori-lang', next);
       applyLanguage(next);
     }
 
@@ -377,16 +377,16 @@
     function toggleTheme() {
       const isDark = document.documentElement.classList.contains('dark');
       const nextTheme = isDark ? 'light' : 'dark';
-      localStorage.setItem('bharatcare-theme', nextTheme);
+      localStorage.setItem('Dori-theme', nextTheme);
       applyTheme(nextTheme);
     }
 
     // --- INIT ---
     (function init() {
-      const savedTheme = localStorage.getItem('bharatcare-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const savedTheme = localStorage.getItem('Dori-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       applyTheme(savedTheme);
       
-      const savedLang = localStorage.getItem('bharatcare-lang') || 'en';
+      const savedLang = localStorage.getItem('Dori-lang') || 'en';
       applyLanguage(savedLang);
       
       setState('idle');

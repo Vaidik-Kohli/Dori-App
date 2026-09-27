@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bharat Care – Operator Console</title>
+  <title>Dori – Operator Console</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,7 +175,7 @@
         <aside id="queueList" class="col-span-3 flex flex-col h-full">
           <div class="flex items-center justify-between mb-5">
             <h2 class="text-sm font-black uppercase tracking-widest text-slate-500">Incoming Queue</h2>
-            <span class="px-2 py-1 bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-md text-xs font-bold">4</span>
+            <span class="px-2 py-1 bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-md text-xs font-bold">2</span>
           </div>
 
           <div class="flex-1 space-y-3 queue-scroll overflow-y-auto pr-2">
@@ -597,7 +597,7 @@ setTimeout(() => { renderQueue(); selectCall(0); }, 500);
     function toggleTheme() {
       const isDark = document.documentElement.classList.contains('dark');
       const nextTheme = isDark ? 'light' : 'dark';
-      localStorage.setItem('bharatcare-theme', nextTheme);
+      localStorage.setItem('Dori-theme', nextTheme);
       applyTheme(nextTheme);
     }
 
@@ -678,7 +678,7 @@ setTimeout(() => { renderQueue(); selectCall(0); }, 500);
     });
 
     (function init() {
-      const savedTheme = localStorage.getItem('bharatcare-theme') ||
+      const savedTheme = localStorage.getItem('Dori-theme') ||
         (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       applyTheme(savedTheme);
       
