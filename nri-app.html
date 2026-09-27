@@ -88,7 +88,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800;900&display=swap" rel="stylesheet">
-  <script src="/socket.io/socket.io.js"></script>
+  
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -353,17 +353,9 @@
 
     </main>
     
-    <!-- DEBUG DEMO BAR (Hidden bottom edge trigger for live presentations) -->
-    <div class="absolute bottom-0 left-0 w-full bg-black text-white text-[10px] font-bold p-1 flex justify-center gap-4 z-50 opacity-20 hover:opacity-100 transition-opacity">
-      <span class="text-gray-400">DEMO:</span>
-      <button onclick="setState(1)" class="hover:text-blue-400 uppercase">1. En Route</button>
-      <button onclick="setState(2)" class="hover:text-amber-400 uppercase">2. Arrived</button>
-      <button onclick="setState(3)" class="hover:text-emerald-400 uppercase">3. Done</button>
     </div>
 
-  </div>
-
-  <script src="/socket.io/socket.io.js"></script>
+  
   <script>
     // Theme Toggle Logic
     function applyTheme(theme) {
