@@ -223,7 +223,7 @@
 
           <!-- Bottom Action -->
           <div class="pointer-events-auto pb-4">
-            <button onclick="arriveAtJob()" class="btn-tactile btn-tactile-blue w-full h-[72px] rounded-[24px] bg-blueUI text-white text-lg font-black tracking-wide shadow-btn-3d-blue flex items-center justify-center gap-3">
+            <button id="btnArrive" onclick="arriveAtJob()" class="btn-tactile btn-tactile-blue w-full h-[72px] rounded-[24px] bg-blueUI text-white text-lg font-black tracking-wide shadow-btn-3d-blue flex items-center justify-center gap-3">
               I Have Arrived
             </button>
           </div>
@@ -538,6 +538,6 @@ function triggerVibration(pattern) {
     if (navigator.vibrate) navigator.vibrate(pattern);
 }
 </script>
-</body>
+<script src="tutorial-helper.js"></script></body>
 
 </html>
