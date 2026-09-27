@@ -353,7 +353,7 @@
             <h3 class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-5">Today's Activity</h3>
             <div class="grid grid-cols-2 gap-4">
               <div class="p-4 rounded-[16px] bg-bgLight dark:bg-[#1A1A1A] border-2 border-borderLight dark:border-borderDark text-center">
-                <p class="text-3xl font-black">12</p>
+                <p class="text-3xl font-black">11</p>
                 <p class="text-[10px] font-bold text-slate-500 uppercase mt-1">Total</p>
               </div>
               <div class="p-4 rounded-[16px] bg-bgLight dark:bg-[#1A1A1A] border-2 border-primary/30 text-center">
@@ -453,9 +453,9 @@
     // LIVE DATA POLLING
     // -------------------------------------------------------
     let callsData = [
-    { id: 18, call_id: '#6862', caller_name: 'Anand Sharma', location: 'Delhi, DL', created_at: new Date().toISOString(), status: 'pending', urgency_level: 'emergency', category: 'Medical', summary: 'SOS Triggered' },
-    { id: 17, call_id: '#1049', caller_name: 'Rajesh Kumar', location: 'Delhi, DL', created_at: new Date(Date.now() - 3600000).toISOString(), status: 'completed', urgency_level: 'routine', category: 'Checkup', summary: 'Routine BP Check' }
-];
+      { id: 18, call_id: '#6862', caller_name: 'Anand Sharma', location: 'Delhi, DL', created_at: new Date().toISOString(), status: 'pending', urgency_level: 'emergency', category: 'Medical', summary: 'SOS Triggered. Patient experiencing acute chest pain and shortness of breath.', required_skill: 'Paramedic', followup_action: 'Notify Son (Rahul)' },
+      { id: 17, call_id: '#1049', caller_name: 'Rajesh Kumar', location: 'Delhi, DL', created_at: new Date(Date.now() - 3600000).toISOString(), status: 'completed', urgency_level: 'routine', category: 'Checkup', summary: 'Routine BP Check. Vitals are normal.', required_skill: 'General Care', followup_action: 'Log in medical record' }
+  ];
 setTimeout(() => { renderQueue(); selectCall(0); }, 500);
     let currentCallIndex = 0;
 
