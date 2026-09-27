@@ -281,7 +281,7 @@
 
       <!-- Trust-Building Helper Profile -->
       <div class="mt-auto p-6 pt-0">
-        <div class="bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-6 shadow-sm flex flex-col gap-5">
+        <div id="nriHelperCard" class="bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-6 shadow-sm flex flex-col gap-5">
             
             <div class="flex items-center gap-4">
               <div class="relative shrink-0">
@@ -312,7 +312,7 @@
               </span>
             </div>
 
-            <button onclick="document.getElementById('chatModal').classList.remove('hidden')" class="btn-tactile btn-tactile-slate w-full h-[52px] rounded-[16px] bg-borderLight dark:bg-borderDark text-slate-700 dark:text-slate-300 font-black tracking-wide shadow-btn-3d-slate flex items-center justify-center gap-2 focus:outline-none">
+            <button id="msgBtn" onclick="document.getElementById('chatModal').classList.remove('hidden')"  class="btn-tactile btn-tactile-slate w-full h-[52px] rounded-[16px] bg-borderLight dark:bg-borderDark text-slate-700 dark:text-slate-300 font-black tracking-wide shadow-btn-3d-slate flex items-center justify-center gap-2 focus:outline-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               Message Helper
             </button>
@@ -496,6 +496,6 @@ function triggerVibration(pattern) {
     if (navigator.vibrate) navigator.vibrate(pattern);
 }
 </script>
-</body>
+<script src="tutorial-family.js"></script></body>
 
 </html>
