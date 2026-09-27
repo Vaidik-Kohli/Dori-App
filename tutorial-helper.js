@@ -88,6 +88,7 @@
         tooltip.innerHTML = `<div style="font-size:14px; line-height:1.5;">${step.text}</div>${btnHtml}${skipHtml}`;
         
         document.getElementById('doriTutSkip').onclick = () => {
+            localStorage.setItem('dori-tut-skipped-global', 'true');
             localStorage.setItem('dori-tut-done-tutorial-helper', 'true');
             endTutorial();
         };
@@ -121,7 +122,7 @@
 
     window.addEventListener('load', () => {
         // Start tutorial step 1
-        if (localStorage.getItem('dori-tut-done-tutorial-helper')) return;
+        if (localStorage.getItem('dori-tut-skipped-global') || (localStorage.getItem('dori-tut-done-tutorial-helper'))) return;
         setTimeout(() => advance(1), 500);
 
         // Intercept showState
