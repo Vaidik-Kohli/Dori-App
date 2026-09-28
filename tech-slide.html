@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 5: Technology & Innovation – Dori</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Figtree', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            bgLight: '#FAF9F6',
+            bgDark: '#0A0A0A',
+            surfaceLight: '#FFFFFF',
+            surfaceDark: '#141414',
+            surfaceCardDark: '#1A1A1A',
+            borderLight: '#E5E5E5',
+            borderDark: '#262626',
+            primary: '#059669',
+            primaryDark: '#047857',
+            blueUI: '#2563EB',
+            amberUI: '#D97706',
+          }
+        },
+      },
+    };
+  </script>
+  <style>
+    .glow-primary {
+      box-shadow: 0 0 50px -15px rgba(5, 150, 105, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-bgLight dark:bg-bgDark text-[#171717] dark:text-[#F5F5F5] antialiased min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- TOP HEADER / NAV -->
+  <header class="px-8 py-5 flex items-center justify-between border-b border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-surfaceDark shrink-0">
+    <div class="flex items-center gap-4">
+      <a href="index.html" class="w-10 h-10 rounded-[12px] bg-primary flex items-center justify-center text-white hover:opacity-90 transition-opacity">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </a>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded text-[11px] font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">Slide 5</span>
+          <h1 class="text-xl font-black tracking-tight">Technology & Innovation</h1>
+        </div>
+        <p class="text-xs text-slate-500 font-semibold mt-0.5">Dori (डोरी) — Pitch Deck Presentation</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-3">
+      <button onclick="window.print()" class="h-10 px-4 rounded-xl border border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 text-xs font-bold transition-colors flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        Print / PDF
+      </button>
+      <button id="themeToggle" onclick="toggleTheme()" class="w-10 h-10 rounded-xl flex items-center justify-center border border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none">
+        <svg id="iconSun" class="hidden w-5 h-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" /></svg>
+        <svg id="iconMoon" class="w-5 h-5 text-slate-700 dark:text-slate-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd" /></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDE CONTENT -->
+  <main class="flex-1 max-w-7xl mx-auto w-full p-6 md:p-10 flex flex-col justify-center">
+
+    <!-- SLIDE BANNER -->
+    <div class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-black uppercase tracking-wider mb-3">
+        Zero-Cognitive Friction • Intelligent Triage • Algorithmic Dispatch
+      </div>
+      <h2 class="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+        Architecture, Technologies & Innovation
+      </h2>
+      <p class="text-base text-slate-500 dark:text-slate-400 mt-2 font-medium max-w-3xl">
+        How Dori combines ambient acoustic AI, geospatial reverse-matching, and hardware-less zero-trust security into a sub-5-second crisis resolution loop.
+      </p>
+    </div>
+
+    <!-- 3-PILLAR BENTO GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+
+      <!-- COLUMN 1: END-TO-END ARCHITECTURE -->
+      <div class="bg-surfaceLight dark:bg-surfaceCardDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-6 flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="flex items-center justify-between mb-5">
+            <span class="text-xs font-black uppercase tracking-widest text-slate-400">01 / Architecture</span>
+            <span class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-black text-sm">4x</span>
+          </div>
+          <h3 class="text-xl font-black mb-4">4-Tier Crisis Resolution Pipeline</h3>
+          
+          <div class="space-y-3 font-medium text-xs">
+            <!-- Step 1 -->
+            <div class="p-3 rounded-xl bg-bgLight dark:bg-[#121212] border border-borderLight dark:border-borderDark">
+              <div class="flex items-center justify-between font-bold text-slate-800 dark:text-slate-200">
+                <span>1. Edge Trigger Layer</span>
+                <span class="text-[10px] text-emerald-500 font-mono">&lt; 0.2s</span>
+              </div>
+              <p class="text-slate-500 mt-1">1-Touch tactile button + Voice Activity Detection (VAD) opens live ambient mic.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="p-3 rounded-xl bg-bgLight dark:bg-[#121212] border border-borderLight dark:border-borderDark">
+              <div class="flex items-center justify-between font-bold text-slate-800 dark:text-slate-200">
+                <span>2. AI Triage Engine</span>
+                <span class="text-[10px] text-blueUI font-mono">1.8s latency</span>
+              </div>
+              <p class="text-slate-500 mt-1">Whisper Indic STT + LLM classifies severity, extracts Hindi medical intent & skills.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="p-3 rounded-xl bg-bgLight dark:bg-[#121212] border border-borderLight dark:border-borderDark">
+              <div class="flex items-center justify-between font-bold text-slate-800 dark:text-slate-200">
+                <span>3. Geospatial Matching</span>
+                <span class="text-[10px] text-amberUI font-mono">H3 Indexing</span>
+              </div>
+              <p class="text-slate-500 mt-1">Dispatches verified Paramedic vs. companion within 3km radius matching clinical need.</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="p-3 rounded-xl bg-bgLight dark:bg-[#121212] border border-borderLight dark:border-borderDark">
+              <div class="flex items-center justify-between font-bold text-slate-800 dark:text-slate-200">
+                <span>4. Zero-Trust Verification</span>
+                <span class="text-[10px] text-emerald-500 font-mono">Handshake</span>
+              </div>
+              <p class="text-slate-500 mt-1">4-digit ephemeral OTP on senior's screen verified by responder on doorstep before entry.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-borderLight dark:border-borderDark flex items-center justify-between text-[11px] font-bold text-slate-400">
+          <span>End-to-End Latency</span>
+          <span class="text-primary font-mono font-black">&lt; 4.8 Seconds</span>
+        </div>
+      </div>
+
+      <!-- COLUMN 2: TECHNOLOGIES USED & WHY BEST FIT -->
+      <div class="bg-surfaceLight dark:bg-surfaceCardDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-6 flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="flex items-center justify-between mb-5">
+            <span class="text-xs font-black uppercase tracking-widest text-slate-400">02 / Stack</span>
+            <span class="w-8 h-8 rounded-lg bg-blueUI/10 text-blueUI flex items-center justify-center font-black text-sm">Tech</span>
+          </div>
+          <h3 class="text-xl font-black mb-4">Core Technologies & Justification</h3>
+
+          <div class="space-y-3.5 text-xs">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <h4 class="font-extrabold text-sm text-slate-900 dark:text-slate-100">Indic Speech AI (Whisper + LLaMA)</h4>
+              </div>
+              <p class="text-slate-500 pl-4 font-medium leading-relaxed">
+                <span class="font-bold text-slate-700 dark:text-slate-300">Why fit:</span> Elderly demographic cannot type. Understands Hindi code-mixing and extracts clinical metadata automatically.
+              </p>
+            </div>
+
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-blueUI"></span>
+                <h4 class="font-extrabold text-sm text-slate-900 dark:text-slate-100">Uber H3 Spatial Clustering & Routing</h4>
+              </div>
+              <p class="text-slate-500 pl-4 font-medium leading-relaxed">
+                <span class="font-bold text-slate-700 dark:text-slate-300">Why fit:</span> Sub-second spatial lookup across neighborhood hexagonal zones ensures responders arrive within &lt;15 mins.
+              </p>
+            </div>
+
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-amberUI"></span>
+                <h4 class="font-extrabold text-sm text-slate-900 dark:text-slate-100">Ephemeral Cryptographic OTP Handshake</h4>
+              </div>
+              <p class="text-slate-500 pl-4 font-medium leading-relaxed">
+                <span class="font-bold text-slate-700 dark:text-slate-300">Why fit:</span> Seniors living alone fear stranger entry. Generates zero-trust verification without costly smart-lock hardware.
+              </p>
+            </div>
+
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                <h4 class="font-extrabold text-sm text-slate-900 dark:text-slate-100">Dual-Channel WebSockets & WebRTC</h4>
+              </div>
+              <p class="text-slate-500 pl-4 font-medium leading-relaxed">
+                <span class="font-bold text-slate-700 dark:text-slate-300">Why fit:</span> Real-time cross-border telemetry links family in the US/UK with live GPS and audio channels directly to the responder.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-borderLight dark:border-borderDark flex items-center justify-between text-[11px] font-bold text-slate-400">
+          <span>Infrastructure</span>
+          <span class="text-blueUI font-mono font-black">Cloud-Native Edge Event Hub</span>
+        </div>
+      </div>
+
+      <!-- COLUMN 3: WHAT MAKES IT INNOVATIVE -->
+      <div class="bg-surfaceLight dark:bg-surfaceCardDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-6 flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="flex items-center justify-between mb-5">
+            <span class="text-xs font-black uppercase tracking-widest text-slate-400">03 / Innovation</span>
+            <span class="w-8 h-8 rounded-lg bg-amberUI/10 text-amberUI flex items-center justify-center font-black text-sm">USP</span>
+          </div>
+          <h3 class="text-xl font-black mb-4">Key Innovations & Differentials</h3>
+
+          <div class="space-y-3 text-xs">
+            <div class="p-3.5 rounded-xl border border-primary/20 bg-primary/5">
+              <h4 class="font-black text-primary text-sm mb-1">1. Ambient Acoustic Triage</h4>
+              <p class="text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+                Bypasses all app navigation. Converting natural panic audio into structured triage data in Hindi without requiring the user to tap or articulate a formal menu.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-xl border border-blueUI/20 bg-blueUI/5">
+              <h4 class="font-black text-blueUI text-sm mb-1">2. Reverse Skill-Matching Engine</h4>
+              <p class="text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+                Traditional gig apps send anyone. Dori matches clinical skill: Paramedic for chest pain vs. tech-savvy helper for hardware failure.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-xl border border-amberUI/20 bg-amberUI/5">
+              <h4 class="font-black text-amberUI text-sm mb-1">3. Hardware-Less Zero-Trust Security</h4>
+              <p class="text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+                Eliminates the fear of impersonators. A one-time security handshake required on the doorstep before the task can be marked active.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-[#121212]">
+              <h4 class="font-black text-slate-800 dark:text-slate-200 text-sm mb-1">4. Cross-Border Transparency</h4>
+              <p class="text-slate-500 font-medium leading-relaxed">
+                Instant SMS and live tracker for overseas children, turning helpless distance into real-time visibility and direct voice bridge.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-borderLight dark:border-borderDark flex items-center justify-between text-[11px] font-bold text-slate-400">
+          <span>Competitive Edge</span>
+          <span class="text-amberUI font-mono font-black">Zero Cognitive Load Care</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PRESENTER SCRIPT / NOTES COLLAPSIBLE -->
+    <div class="p-5 rounded-[20px] border-2 border-dashed border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-surfaceDark text-xs leading-relaxed">
+      <div class="flex items-center gap-2 font-black text-slate-400 uppercase tracking-widest mb-1.5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+        30-Second Judge Pitch Script (Slide 5)
+      </div>
+      <p class="text-slate-600 dark:text-slate-300 font-medium">
+        <span class="font-bold text-primary">"On the technology front, Dori's breakthrough is zero cognitive load for seniors combined with algorithmic precision on the backend.</span> 
+        Instead of expecting an 75-year-old in acute distress to navigate an app, our ambient Speech-to-Intent AI listens to natural Hindi, classifies the urgency in under 2 seconds, and automatically reverse-matches the exact required skill—routing a certified paramedic for acute pain, and a community helper for routine tasks. 
+        Coupled with our hardware-less zero-trust OTP handshake and real-time overseas telemetry, Dori turns panic into coordinated, verifiable care in under five seconds."
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const nextTheme = isDark ? 'light' : 'dark';
+      
+      const sunIcon = document.getElementById('iconSun');
+      const moonIcon = document.getElementById('iconMoon');
+      
+      if (nextTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+      localStorage.setItem('Dori-theme', nextTheme);
+    }
+
+    (function init() {
+      const savedTheme = localStorage.getItem('Dori-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('iconSun').classList.remove('hidden');
+        document.getElementById('iconMoon').classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('iconSun').classList.add('hidden');
+        document.getElementById('iconMoon').classList.remove('hidden');
+      }
+    })();
+  </script>
+</body>
+</html>
