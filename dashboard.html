@@ -87,10 +87,10 @@
 
 <body class="bg-bgLight dark:bg-bgDark text-[#171717] dark:text-[#F5F5F5] antialiased min-h-screen flex flex-col transition-colors duration-300" style="-webkit-tap-highlight-color: transparent;">
 
-  <div id="appContainer" class="flex-1 flex flex-col max-w-[480px] mx-auto w-full relative border-x-2 border-borderLight dark:border-borderDark bg-bgLight dark:bg-bgDark h-[100dvh] overflow-hidden pb-[80px]">
+  <div id="appContainer" class="flex-1 flex flex-col max-w-[480px] mx-auto w-full relative border-x-2 border-borderLight dark:border-borderDark bg-bgLight dark:bg-bgDark h-[100dvh] overflow-hidden">
 
     <!-- HEADER: Reassurance & Controls -->
-    <header class="px-6 py-5 flex items-center justify-between z-10">
+    <header class="px-6 py-4 flex items-center justify-between shrink-0 z-10 border-b border-borderLight/40 dark:border-borderDark/40">
       <div class="flex items-center gap-3">
         <!-- Status Indicator -->
         <div class="relative flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800">
@@ -121,108 +121,109 @@
     </header>
 
     <!-- MAIN ACTION AREA: The Giant Button -->
-    <main class="flex-1 flex flex-col items-center justify-center px-6 py-10 mt-4">
+    <!-- SCROLLABLE BODY / MAIN CONTENT -->
+    <main class="flex-1 overflow-y-auto min-h-0 px-6 py-4 flex flex-col items-center justify-around gap-4">
       
-      <!-- Container to hold the button and prevent layout shift during states -->
-      <div class="h-[260px] flex items-center justify-center w-full">
+      <!-- Container to hold the button -->
+      <div class="flex items-center justify-center w-full py-1 shrink-0">
         
         <!-- THE TACTILE BUTTON -->
         <button
           id="heroBtn"
           onclick="handleHeroPress()"
-          class="btn-tactile relative w-[220px] h-[220px] rounded-[48px] bg-primary text-white shadow-btn-3d flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-4 dark:focus:ring-offset-bgDark"
+          class="btn-tactile relative w-[200px] h-[200px] rounded-[44px] bg-primary text-white shadow-btn-3d flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-4 dark:focus:ring-offset-bgDark shrink-0"
           aria-label="Press to call for help"
         >
-          <svg id="heroIcon" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="currentColor">
+          <svg id="heroIcon" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor">
             <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
           </svg>
           
           <div class="flex flex-col items-center">
             <span id="heroText" class="text-2xl font-black tracking-tight" data-en="Call Now" data-hi="कॉल करें">Call Now</span>
-            <span id="heroSubtext" class="text-sm font-semibold opacity-90 mt-1" data-en="We will call you back" data-hi="हम आपको कॉल करेंगे">We will call you back</span>
+            <span id="heroSubtext" class="text-xs font-semibold opacity-90 mt-0.5" data-en="We will call you back" data-hi="हम आपको कॉल करेंगे">We will call you back</span>
           </div>
         </button>
 
       </div>
 
-    </main>
-
-    <!-- INFORMATION / STATUS CARD -->
-    <!-- Positioned solidly at the bottom, mimicking a physical digital display panel -->
-    <div class="px-6 w-full">
-      <div id="statusPanel" class="w-full bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-6 shadow-sm transition-all duration-300">
-        
-        <!-- State 1: IDLE -->
-        <div id="card-idle" class="flex flex-col text-center">
-          <div class="w-12 h-12 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center mx-auto mb-4 text-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17l-5-5"/>
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold mb-2" data-en="Ready to Help" data-hi="मदद के लिए तैयार">Ready to Help</h2>
-          <p class="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed" data-en="Tap the big green button above if you need a doctor, groceries, or any assistance." data-hi="अगर आपको डॉक्टर, किराने का सामान या कोई मदद चाहिए तो ऊपर हरा बटन दबाएं।">Tap the big green button above if you need a doctor, groceries, or any assistance.</p>
-        </div>
-
-        <!-- State 2: CONNECTING -->
-        <div id="card-connecting" class="hidden flex flex-col text-center animate-subtle-pulse">
+      <!-- INFORMATION / STATUS CARD -->
+      <div class="w-full shrink-0">
+        <div id="statusPanel" class="w-full bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-5 shadow-sm transition-all duration-300">
           
-          <div class="flex items-end justify-center h-[40px] mx-auto mb-6 gap-1" id="waveform">
-            <div class="w-1.5 bg-warning rounded-full h-4 animate-[pulse_0.4s_ease-in-out_infinite]"></div>
-            <div class="w-1.5 bg-warning rounded-full h-8 animate-[pulse_0.3s_ease-in-out_infinite]"></div>
-            <div class="w-1.5 bg-warning rounded-full h-10 animate-[pulse_0.5s_ease-in-out_infinite]"></div>
-            <div class="w-1.5 bg-warning rounded-full h-7 animate-[pulse_0.35s_ease-in-out_infinite]"></div>
-            <div class="w-1.5 bg-warning rounded-full h-5 animate-[pulse_0.45s_ease-in-out_infinite]"></div>
+          <!-- State 1: IDLE -->
+          <div id="card-idle" class="flex flex-col text-center">
+            <div class="w-11 h-11 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center mx-auto mb-3 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+            </div>
+            <h2 class="text-lg font-extrabold mb-1" data-en="Ready to Help" data-hi="मदद के लिए तैयार">Ready to Help</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold leading-relaxed" data-en="Tap the big green button above if you need a doctor, groceries, or any assistance." data-hi="अगर आपको डॉक्टर, किराने का सामान या कोई मदद चाहिए तो ऊपर हरा बटन दबाएं।">Tap the big green button above if you need a doctor, groceries, or any assistance.</p>
           </div>
 
-          <h2 class="text-xl font-bold text-alert mb-2" data-en="Calling Riya..." data-hi="रिया आपको कॉल कर रही है...">Riya is calling you...</h2>
-          <p class="text-sm text-slate-500 dark:text-slate-400 font-medium" data-en="Please wait. Your phone will ring in a few seconds." data-hi="कृपया प्रतीक्षा करें। आपका फोन कुछ ही सेकंड में बजेगा।">Please wait. Your phone will ring in a few seconds.</p>
-        </div>
+          <!-- State 2: CONNECTING -->
+          <div id="card-connecting" class="hidden flex flex-col text-center animate-subtle-pulse">
+            
+            <div class="flex items-end justify-center h-[36px] mx-auto mb-4 gap-1" id="waveform">
+              <div class="w-1.5 bg-warning rounded-full h-4 animate-[pulse_0.4s_ease-in-out_infinite]"></div>
+              <div class="w-1.5 bg-warning rounded-full h-8 animate-[pulse_0.3s_ease-in-out_infinite]"></div>
+              <div class="w-1.5 bg-warning rounded-full h-10 animate-[pulse_0.5s_ease-in-out_infinite]"></div>
+              <div class="w-1.5 bg-warning rounded-full h-7 animate-[pulse_0.35s_ease-in-out_infinite]"></div>
+              <div class="w-1.5 bg-warning rounded-full h-5 animate-[pulse_0.45s_ease-in-out_infinite]"></div>
+            </div>
 
-        <!-- State 3: HELPER ASSIGNED (OTP) -->
-        <div id="card-assigned" class="hidden flex flex-col">
-          <div class="flex items-center gap-4 border-b-2 border-borderLight dark:border-borderDark pb-6 mb-6">
-            <div id="parentHelperInitials" class="w-12 h-12 rounded-full bg-borderLight dark:bg-borderDark flex items-center justify-center font-black tracking-tighter text-slate-400">--</div>
-            <div>
-              <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-0.5" data-en="Helper Assigned" data-hi="सहायक नियुक्त">Helper Assigned</p>
-              <h2 id="parentHelperName" class="text-lg font-extrabold">Assigning Helper...</h2>
-              <p class="text-sm font-bold text-primary flex items-center gap-1 mt-0.5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 00-4.8 5.766L4.743 12h-2.25a.75.75 0 000 1.5h1.993l1.83 4.271a11.21 11.21 0 004.8 5.765.75.75 0 001.032 0 11.209 11.209 0 004.8-5.766L18.784 13.5h1.966a.75.75 0 000-1.5h-2.22l-1.94-4.064a11.209 11.209 0 00-4.074-5.766zM6.5 12l1.63-3.804A9.715 9.715 0 0112 3.618a9.715 9.715 0 013.87 4.578L17.5 12h-11z" clip-rule="evenodd" />
-                </svg>
-                <span data-en="Arriving in 15 mins" data-hi="15 मिनट में पहुँच रहे हैं">Arriving in 15 mins</span>
-              </p>
+            <h2 class="text-lg font-extrabold text-alert mb-1" data-en="Calling Riya..." data-hi="रिया आपको कॉल कर रही है...">Riya is calling you...</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold" data-en="Please wait. Your phone will ring in a few seconds." data-hi="कृपया प्रतीक्षा करें। आपका फोन कुछ ही सेकंड में बजेगा।">Please wait. Your phone will ring in a few seconds.</p>
+          </div>
+
+          <!-- State 3: HELPER ASSIGNED (OTP) -->
+          <div id="card-assigned" class="hidden flex flex-col">
+            <div class="flex items-center gap-4 border-b-2 border-borderLight dark:border-borderDark pb-4 mb-4">
+              <div id="parentHelperInitials" class="w-12 h-12 rounded-full bg-borderLight dark:border-borderDark flex items-center justify-center font-black tracking-tighter text-slate-400">--</div>
+              <div>
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-0.5" data-en="Helper Assigned" data-hi="सहायक नियुक्त">Helper Assigned</p>
+                <h2 id="parentHelperName" class="text-base font-extrabold">Assigning Helper...</h2>
+                <p class="text-xs font-bold text-primary flex items-center gap-1 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 00-4.8 5.766L4.743 12h-2.25a.75.75 0 000 1.5h1.993l1.83 4.271a11.21 11.21 0 004.8 5.765.75.75 0 001.032 0 11.209 11.209 0 004.8-5.766L18.784 13.5h1.966a.75.75 0 000-1.5h-2.22l-1.94-4.064a11.209 11.209 0 00-4.074-5.766zM6.5 12l1.63-3.804A9.715 9.715 0 0112 3.618a9.715 9.715 0 013.87 4.578L17.5 12h-11z" clip-rule="evenodd" />
+                  </svg>
+                  <span data-en="Arriving in 15 mins" data-hi="15 मिनट में पहुँच रहे हैं">Arriving in 15 mins</span>
+                </p>
+              </div>
+            </div>
+            
+            <div id="otpArea" class="pt-2 text-center">
+              <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2.5" data-en="Security Code (OTP)" data-hi="सुरक्षा कोड (OTP)">Security Code (OTP)</p>
+              <div class="flex justify-center gap-2.5" id="otpContainer">
+                <span id="otp1" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
+                <span id="otp2" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
+                <span id="otp3" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
+                <span id="otp4" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
+              </div>
+              <p class="text-xs font-semibold mt-3 text-alert bg-alert/10 py-1.5 px-3 rounded-lg inline-block" data-en="Do not share this on the phone" data-hi="इसे फोन पर किसी को न बताएं">Do not share this on the phone</p>
             </div>
           </div>
-          
-          <div id="otpArea" class="pt-5 text-center">
-            <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3" data-en="Security Code (OTP)" data-hi="सुरक्षा कोड (OTP)">Security Code (OTP)</p>
-            <div class="flex justify-center gap-3" id="otpContainer">
-              <span id="otp1" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
-              <span id="otp2" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
-              <span id="otp3" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
-              <span id="otp4" class="otp-digit border-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-[#262626] text-black dark:text-white">-</span>
-            </div>
-            <p class="text-sm font-semibold mt-4 text-alert bg-alert/10 py-2 px-4 rounded-xl inline-block" data-en="Do not share this on the phone" data-hi="इसे फोन पर किसी को न बताएं">Do not share this on the phone</p>
-          </div>
-        </div>
 
+        </div>
       </div>
-    </div>
+
+    </main>
     
-  <footer class="w-full mt-auto shrink-0 bg-surfaceLight dark:bg-surfaceDark border-t-2 border-borderLight dark:border-borderDark px-6 py-4 z-10">
-      <div class="flex flex-col gap-4">
+    <!-- FIXED BOTTOM FOOTER: Seamlessly anchored, single-line horizontal layout -->
+    <footer class="w-full shrink-0 bg-surfaceLight dark:bg-surfaceDark border-t-2 border-borderLight dark:border-borderDark px-6 py-3.5 z-10">
+      <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400">
+          <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
             </svg>
           </div>
           <div>
-            <p class="text-sm font-bold" data-en="Call Rahul (Son)" data-hi="??? ????? (????)">Call Rahul (Son)</p>
+            <p class="text-sm font-bold" data-en="Call Rahul (Son)" data-hi="राहुल (बेटा) को कॉल करें">Call Rahul (Son)</p>
             <p class="text-xs text-slate-500 font-semibold">+91 98765 43210</p>
           </div>
         </div>
-        <a href="tel:+919876543210" class="btn-tactile w-full h-[52px] rounded-[16px] bg-black dark:bg-white text-white dark:text-black font-black text-sm tracking-wide shadow-btn-3d flex items-center justify-center focus:outline-none" data-en="Direct Call" data-hi="???? ???">
+        <a href="tel:+919876543210" class="btn-tactile h-10 px-4 rounded-full bg-black dark:bg-white text-white dark:text-black font-extrabold text-sm flex items-center justify-center shadow-sm shrink-0 focus:outline-none" data-en="Direct Call" data-hi="सीधा कॉल">
           Direct Call
         </a>
       </div>
@@ -250,7 +251,7 @@
       if (newState === 'idle') {
         document.getElementById('card-idle').classList.remove('hidden');
         
-        btn.className = 'btn-tactile relative w-[220px] h-[220px] rounded-[48px] bg-primary text-white shadow-btn-3d flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-4 dark:focus:ring-offset-bgDark';
+        btn.className = 'btn-tactile relative w-[200px] h-[200px] rounded-[44px] bg-primary text-white shadow-btn-3d flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-4 dark:focus:ring-offset-bgDark';
         txt.textContent = isHi ? "कॉल करें" : "Call Now";
         subtxt.textContent = isHi ? "हम आपको कॉल करेंगे" : "We will call you back";
         icon.innerHTML = '<path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />';
@@ -258,7 +259,7 @@
       else if (newState === 'connecting') {
         document.getElementById('card-connecting').classList.remove('hidden');
         
-        btn.className = 'btn-tactile relative w-[220px] h-[220px] rounded-[48px] bg-alert text-white shadow-btn-3d-alert flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-alert focus:ring-offset-4 dark:focus:ring-offset-bgDark';
+        btn.className = 'btn-tactile relative w-[200px] h-[200px] rounded-[44px] bg-alert text-white shadow-btn-3d-alert flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-alert focus:ring-offset-4 dark:focus:ring-offset-bgDark';
         txt.textContent = isHi ? "रद्द करें" : "Cancel Call";
         subtxt.textContent = isHi ? "दबाकर रोकें" : "Press to stop";
         icon.innerHTML = '<path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />';
@@ -266,7 +267,7 @@
       else if (newState === 'helper_assigned') {
         document.getElementById('card-assigned').classList.remove('hidden');
         
-        btn.className = 'btn-tactile relative w-[220px] h-[220px] rounded-[48px] bg-primary text-white shadow-btn-3d flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-4 dark:focus:ring-offset-bgDark opacity-60 pointer-events-none';
+        btn.className = 'btn-tactile relative w-[200px] h-[200px] rounded-[44px] bg-primary text-white shadow-btn-3d flex flex-col items-center justify-center gap-3 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-4 dark:focus:ring-offset-bgDark opacity-60 pointer-events-none';
         txt.textContent = isHi ? "सहायक आ रहा है" : "Helper on way";
         subtxt.textContent = isHi ? "नीचे OTP देखें" : "See OTP below";
         icon.innerHTML = '<path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />';
