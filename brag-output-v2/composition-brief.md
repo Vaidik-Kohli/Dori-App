@@ -4,8 +4,8 @@
 Create a short, punchy, mission-critical launch-style brag video for Dori.
 
 ## Output
-- Composition directory: `brag-output/composition/`
-- Rendered video: `brag-output/brag.mp4`
+- Composition directory: `brag-output-v2/composition/`
+- Rendered video: `brag-output-v2/brag.mp4`
 - Format: landscape — 1920x1080
 - Duration: 20.0 seconds
 
@@ -50,7 +50,7 @@ Create a short, punchy, mission-critical launch-style brag video for Dori.
 - Visual references from the project: The exact button CSS (`rounded-[44px] bg-primary shadow-btn-3d`), OTP digits (`otp-digit`), and glassmorphic card borders (`border-2 border-borderDark`).
 
 ## Storyboard
-Use the storyboard in `brag-output/brag-plan.md` as the creative contract.
+Use the storyboard in `brag-output-v2/brag-plan.md` as the creative contract.
 
 Scene summary:
 1. **Scene 1 (0.0s - 3.70s)**: Hook & SOS Button Drop (beat-locked at 1.60s).
@@ -76,4 +76,4 @@ Scene summary:
 - Audio files: `happy-beats-business-moves-vol-11-by-ende-dot-app.mp3` and UI SFX.
 
 ## Hyperframes Instructions
-Build a standalone 1920x1080 composition in `brag-output/composition/` with HTML, CSS (Tailwind), and GSAP. Run `npx hyperframes check` to validate before render.
+Build a standalone 1920x1080 composition in `brag-output-v2/composition/` with HTML, CSS (Tailwind), and GSAP. Run `npx hyperframes check` to validate before render.

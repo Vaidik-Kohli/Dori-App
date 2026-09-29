@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Dori — Family/NRI App</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.config.js"></script>
+  <link rel="stylesheet" href="styles.css">
   
   <script>
     // -------------------------------------------------------
@@ -82,120 +84,44 @@
     }
     setInterval(pollActiveJob, 10000);
 
-
 </script>
   <!-- Load Figtree for a friendly, highly legible, accessible font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800;900&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Figtree', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            bgLight: '#FAF9F6', // Warm off-white
-            bgDark: '#0A0A0A',  // True deep dark
-            surfaceLight: '#FFFFFF',
-            surfaceDark: '#171717',
-            borderLight: '#E5E5E5',
-            borderDark: '#262626',
-            primary: '#059669', // Strong emerald
-            primaryDark: '#047857',
-            alert: '#DC2626',   // Strong red
-            warning: '#F59E0B',
-            blueUI: '#2563EB',  // Strong blue
-            blueUIDark: '#1D4ED8',
-          },
-          boxShadow: {
-            'btn-3d': '0 4px 0 #047857, 0 10px 15px rgba(0,0,0,0.1)',
-            'btn-3d-active': '0 0px 0 #047857, 0 2px 5px rgba(0,0,0,0.1)',
-            'btn-3d-slate': '0 4px 0 #475569, 0 10px 15px rgba(0,0,0,0.1)',
-            'btn-3d-slate-active': '0 0px 0 #475569, 0 2px 5px rgba(0,0,0,0.1)',
-          }
-        },
-      },
-    };
-  </script>
-  <style>
-    /* Tactile button transition */
-    .btn-tactile {
-      transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .btn-tactile:active {
-      transform: translateY(4px);
-    }
-    .btn-tactile-slate:active {
-      box-shadow: theme('boxShadow.btn-3d-slate-active') !important;
-    }
 
-    /* Subdued pulsing for timeline */
-    @keyframes subtle-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(0.95); }
-    }
-    .animate-subtle-pulse {
-      animation: subtle-pulse 2s ease-in-out infinite;
-    }
-    
-    /* Timeline connecting line animation */
-    .timeline-line {
-      position: absolute;
-      top: 24px;
-      bottom: -24px;
-      left: 11px; /* Center of the 24px icon */
-      width: 2px;
-      background: theme('colors.borderLight');
-      z-index: 0;
-    }
-    .dark .timeline-line {
-      background: theme('colors.borderDark');
-    }
-    
-    .timeline-line-active {
-      background: theme('colors.primary');
-      transition: height 0.5s ease;
-    }
-
-    /* Hide scrollbar */
-    ::-webkit-scrollbar { display: none; }
-  </style>
 </head>
 
-<body class="bg-bgLight dark:bg-bgDark text-[#171717] dark:text-[#F5F5F5] antialiased min-h-screen flex flex-col transition-colors duration-300" style="-webkit-tap-highlight-color: transparent;">
+<body class="bg-bgLight dark:bg-bgDark text-text antialiased min-h-screen flex flex-col transition-colors duration-300" style="-webkit-tap-highlight-color: transparent;">
 
-  <div class="flex-1 flex flex-col max-w-[480px] mx-auto w-full relative border-x-2 border-borderLight dark:border-borderDark bg-bgLight dark:bg-bgDark h-[100dvh] overflow-hidden">
+  <div class="flex-1 flex flex-col max-w-[480px] mx-auto w-full relative border-x-2 border-border bg-bgLight dark:bg-bgDark h-[100dvh] overflow-hidden">
 
     <!-- HEADER -->
-    <header class="px-6 py-5 flex items-center justify-between border-b-2 border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-surfaceDark shrink-0 z-20">
+    <header class="px-6 py-5 flex items-center justify-between border-b-2 border-border bg-surface shrink-0 z-20">
       <div class="flex items-center gap-3">
-        <div class="relative w-12 h-12 rounded-full border-2 border-borderLight dark:border-borderDark overflow-hidden shrink-0">
-          <div class="w-full h-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xl font-black text-slate-500">AS</div>
-          <div class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-white dark:border-surfaceDark rounded-full"></div>
+        <div class="relative w-12 h-12 rounded-full border-2 border-border overflow-hidden shrink-0">
+          <div class="w-full h-full bg-surface flex items-center justify-center text-xl font-black text-textMuted">AS</div>
+          <div class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-onPrimary rounded-full"></div>
         </div>
         <div>
           <h1 class="text-lg font-black tracking-tight">Anand's Status</h1>
-          <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">Amritsar, Punjab</p>
+          <p class="text-[10px] font-bold text-textMuted uppercase tracking-widest mt-0.5">Amritsar, Punjab</p>
         </div>
       </div>
 
       <!-- Controls -->
       <div class="flex items-center gap-2">
-        <button class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-borderLight dark:border-borderDark text-blueUI hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
+        <button class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-border text-secondary hover:bg-text/5 dark:hover:bg-surface/5 transition-colors focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
           </svg>
         </button>
-<a href="index.html" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none portal-home-btn" title="Back to Portal"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
-        <button id="themeToggle" onclick="toggleTheme()" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-borderLight dark:border-borderDark hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
+<a href="index.html" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-border hover:bg-text/5 dark:hover:bg-surface/5 transition-colors focus:outline-none portal-home-btn" title="Back to Portal"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+        <button id="themeToggle" onclick="toggleTheme()" class="w-11 h-11 rounded-full flex items-center justify-center border-2 border-border hover:bg-text/5 dark:hover:bg-surface/5 transition-colors focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
           <svg id="iconSun" class="hidden w-5 h-5 text-warning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
         </svg>
-        <svg id="iconMoon" class="w-5 h-5 text-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <svg id="iconMoon" class="w-5 h-5 text-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
           <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd" />
         </svg>
         </button>
@@ -207,7 +133,7 @@
       
       <!-- Live Tracker -->
       <div class="p-8">
-        <h2 class="text-xs font-black uppercase tracking-widest text-slate-500 mb-6">Live Event Tracker</h2>
+        <h2 class="text-xs font-black uppercase tracking-widest text-textMuted mb-6">Live Event Tracker</h2>
         
         <div id="timelineContainer" class="relative space-y-10 pl-2">
           
@@ -215,11 +141,11 @@
           <div class="relative flex items-start gap-4 z-10" id="step1">
             <div class="timeline-line"></div>
             <div class="timeline-line timeline-line-active h-full"></div>
-            <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-white">
+            <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-onPrimary">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
             </div>
             <div>
-              <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">10:00 AM</p>
+              <p class="text-[10px] font-black uppercase tracking-widest text-textMuted mb-1">10:00 AM</p>
               <h3 class="text-base font-bold">Help Button Pressed</h3>
             </div>
           </div>
@@ -228,13 +154,13 @@
           <div class="relative flex items-start gap-4 z-10" id="step2">
             <div class="timeline-line"></div>
             <div class="timeline-line timeline-line-active h-full" id="line2"></div>
-            <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-white transition-colors duration-300" id="icon2">
+            <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-onPrimary transition-colors duration-300" id="icon2">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
             </div>
             <div>
-              <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">10:02 AM</p>
+              <p class="text-[10px] font-black uppercase tracking-widest text-textMuted mb-1">10:02 AM</p>
               <h3 id="step2Title" class="text-base font-bold">Operator spoke to Caller</h3>
-              <p id="step2Desc" class="text-sm font-semibold text-slate-500 mt-1">Need: Assistance</p>
+              <p id="step2Desc" class="text-sm font-semibold text-textMuted mt-1">Need: Assistance</p>
             </div>
           </div>
 
@@ -242,11 +168,11 @@
           <div class="relative flex items-start gap-4 z-10" id="step3">
             <div class="timeline-line"></div>
             <div class="timeline-line timeline-line-active h-full" id="line3"></div>
-            <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-white transition-colors duration-300" id="icon3">
+            <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-onPrimary transition-colors duration-300" id="icon3">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
             </div>
             <div>
-              <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">10:15 AM</p>
+              <p class="text-[10px] font-black uppercase tracking-widest text-textMuted mb-1">10:15 AM</p>
               <h3 class="text-base font-bold">Helper Dispatched</h3>
             </div>
           </div>
@@ -256,13 +182,13 @@
             <div class="timeline-line"></div>
             <div class="timeline-line timeline-line-active h-0" id="line4"></div>
             <!-- Active state icon -->
-            <div class="w-6 h-6 rounded-full bg-blueUI flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-white animate-subtle-pulse transition-colors duration-300" id="icon4">
-              <div class="w-2 h-2 rounded-full bg-white"></div>
+            <div class="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-onSecondary animate-subtle-pulse transition-colors duration-300" id="icon4">
+              <div class="w-2 h-2 rounded-full bg-surface"></div>
             </div>
             <div>
-              <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Scheduled: 3:00 PM</p>
-              <h3 class="text-base font-bold text-blueUI" id="text4">Helper arriving soon</h3>
-              <p class="text-sm font-semibold text-slate-500 mt-1" id="subtext4">Helper is en route to the location.</p>
+              <p class="text-[10px] font-black uppercase tracking-widest text-textMuted mb-1">Scheduled: 3:00 PM</p>
+              <h3 class="text-base font-bold text-secondary" id="text4">Helper arriving soon</h3>
+              <p class="text-sm font-semibold text-textMuted mt-1" id="subtext4">Helper is en route to the location.</p>
             </div>
           </div>
 
@@ -281,17 +207,17 @@
 
       <!-- Trust-Building Helper Profile -->
       <div class="mt-auto p-6 pt-0">
-        <div id="nriHelperCard" class="bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[24px] p-6 shadow-sm flex flex-col gap-5">
+        <div id="nriHelperCard" class="bg-surface border-2 border-border rounded-[24px] p-6 shadow-sm flex flex-col gap-5">
             
             <div class="flex items-center gap-4">
               <div class="relative shrink-0">
-                <div class="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-primary flex items-center justify-center text-xl font-black text-slate-500">SV</div>
-                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-white dark:bg-surfaceDark rounded-full flex items-center justify-center">
-                  <div class="w-4 h-4 bg-emerald-500 rounded-full"></div>
+                <div class="w-16 h-16 rounded-full bg-surface border-2 border-primary flex items-center justify-center text-xl font-black text-textMuted">SV</div>
+                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-surface rounded-full flex items-center justify-center">
+                  <div class="w-4 h-4 bg-success rounded-full"></div>
                 </div>
               </div>
               <div>
-                <p class="text-xs font-black uppercase tracking-widest text-slate-500 mb-1">Assigned Helper</p>
+                <p class="text-xs font-black uppercase tracking-widest text-textMuted mb-1">Assigned Helper</p>
                 <h3 id="nriHelperName" class="text-xl font-black">Sunil Verma</h3>
                 <p class="text-sm font-bold text-primary mt-0.5">Paramedic &bull; En Route</p>
               </div>
@@ -304,7 +230,7 @@
                 </svg>
                 Background Verified
               </span>
-              <span class="px-3 py-1.5 rounded-[10px] bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-bold flex items-center gap-1.5">
+              <span class="px-3 py-1.5 rounded-[10px] bg-tertiary/10 border border-tertiary/20 text-tertiary text-xs font-bold flex items-center gap-1.5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                   <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
                 </svg>
@@ -312,16 +238,16 @@
               </span>
             </div>
 
-            <button id="msgBtn" onclick="document.getElementById('chatModal').classList.remove('hidden')"  class="btn-tactile btn-tactile-slate w-full h-[52px] rounded-[16px] bg-borderLight dark:bg-borderDark text-slate-700 dark:text-slate-300 font-black tracking-wide shadow-btn-3d-slate flex items-center justify-center gap-2 focus:outline-none">
+            <button id="msgBtn" onclick="document.getElementById('chatModal').classList.remove('hidden')"  class="btn-tactile btn-tactile-secondary w-full h-[52px] rounded-[16px] bg-borderLight dark:bg-borderDark text-text font-black tracking-wide shadow-btn-3d-secondary flex items-center justify-center gap-2 focus:outline-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               Message Helper
             </button>
           </div>
           
           <!-- CHAT MODAL -->
-          <div id="chatModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-             <div class="bg-surfaceLight dark:bg-surfaceDark border-2 border-borderLight dark:border-borderDark rounded-[32px] w-full max-w-md overflow-hidden flex flex-col h-[500px]">
-                <div class="p-5 border-b border-borderLight dark:border-borderDark flex items-center justify-between">
+          <div id="chatModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-bgDark/60 backdrop-blur-sm">
+             <div class="bg-surface border-2 border-border rounded-[32px] w-full max-w-md overflow-hidden flex flex-col h-[500px]">
+                <div class="p-5 border-b border-border flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full bg-primary/20 text-primary font-bold flex items-center justify-center">SV</div>
                         <div>
@@ -329,21 +255,21 @@
                             <p class="text-xs text-primary">Active Now</p>
                         </div>
                     </div>
-                    <button onclick="document.getElementById('chatModal').classList.add('hidden')" class="p-2 rounded-full bg-bgLight dark:bg-bgDark text-slate-500 hover:text-white transition-colors">
+                    <button onclick="document.getElementById('chatModal').classList.add('hidden')" class="p-2 rounded-full bg-bgLight dark:bg-bgDark text-textMuted hover:text-onPrimary transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                     </button>
                 </div>
                 <div class="flex-1 p-5 overflow-y-auto flex flex-col gap-4 bg-bgLight dark:bg-bgDark">
-                    <div class="self-end bg-primary text-white p-3 rounded-2xl rounded-tr-none max-w-[80%]">
+                    <div class="self-end bg-primary text-onPrimary p-3 rounded-2xl rounded-tr-none max-w-[80%]">
                         <p class="text-sm font-medium">Hi Sunil, please hurry, my father is having chest pain.</p>
                     </div>
-                    <div class="self-start bg-surfaceLight dark:bg-surfaceDark border border-borderLight dark:border-borderDark p-3 rounded-2xl rounded-tl-none max-w-[80%]">
-                        <p class="text-sm font-medium text-slate-800 dark:text-white">I am on my way. ETA 2 minutes. Please keep him seated and calm.</p>
+                    <div class="self-start bg-surface border border-border p-3 rounded-2xl rounded-tl-none max-w-[80%]">
+                        <p class="text-sm font-medium text-text">I am on my way. ETA 2 minutes. Please keep him seated and calm.</p>
                     </div>
                 </div>
-                <div class="p-4 border-t border-borderLight dark:border-borderDark bg-surfaceLight dark:bg-surfaceDark flex gap-2">
-                    <input type="text" placeholder="Type a message..." class="flex-1 bg-bgLight dark:bg-bgDark border-2 border-borderLight dark:border-borderDark rounded-full px-4 text-sm focus:outline-none">
-                    <button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
+                <div class="p-4 border-t border-border bg-surface flex gap-2">
+                    <input type="text" placeholder="Type a message..." class="flex-1 bg-bgLight dark:bg-bgDark border-2 border-border rounded-full px-4 text-sm focus:outline-none">
+                    <button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-onPrimary shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                     </button>
                 </div>
@@ -355,7 +281,6 @@
     
     </div>
 
-  
   <script>
     // Theme Toggle Logic
     function applyTheme(theme) {
@@ -395,9 +320,9 @@
       // Reset all to base (State 1)
       line4.classList.replace('h-full', 'h-0');
       
-      icon4.className = 'w-6 h-6 rounded-full bg-blueUI flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-white animate-subtle-pulse transition-colors duration-300';
-      icon4.innerHTML = '<div class="w-2 h-2 rounded-full bg-white"></div>';
-      text4.className = 'text-base font-bold text-blueUI';
+      icon4.className = 'w-6 h-6 rounded-full bg-secondary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-onSecondary animate-subtle-pulse transition-colors duration-300';
+      icon4.innerHTML = '<div class="w-2 h-2 rounded-full bg-surface"></div>';
+      text4.className = 'text-base font-bold text-secondary';
       text4.innerText = 'Helper arriving soon';
       sub4.innerText = 'Rajesh is en route to the location.';
 
@@ -407,7 +332,7 @@
 
       if (stateNum >= 2) {
         // Step 4 is complete
-        icon4.className = 'w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-white transition-colors duration-300';
+        icon4.className = 'w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-onPrimary transition-colors duration-300';
         icon4.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
         text4.className = 'text-base font-bold';
         text4.innerText = 'Helper Arrived';
@@ -415,9 +340,9 @@
         
         // Step 5 becomes active (pulsing)
         step5.className = 'relative flex items-start gap-4 z-10 opacity-100';
-        icon5.className = 'w-6 h-6 rounded-full bg-blueUI flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-white animate-subtle-pulse transition-colors duration-300';
-        icon5.innerHTML = '<div class="w-2 h-2 rounded-full bg-white"></div>';
-        text5.className = 'text-base font-bold text-blueUI';
+        icon5.className = 'w-6 h-6 rounded-full bg-secondary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-onSecondary animate-subtle-pulse transition-colors duration-300';
+        icon5.innerHTML = '<div class="w-2 h-2 rounded-full bg-surface"></div>';
+        text5.className = 'text-base font-bold text-secondary';
         text5.innerText = 'Task in progress...';
       }
 
@@ -426,7 +351,7 @@
         line4.classList.replace('h-0', 'h-full');
         
         // Step 5 is complete
-        icon5.className = 'w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-white transition-colors duration-300';
+        icon5.className = 'w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 z-10 border-[3px] border-bgLight dark:border-bgDark shadow-sm text-onPrimary transition-colors duration-300';
         icon5.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
         text5.className = 'text-base font-bold';
         text5.innerText = 'Task Completed';

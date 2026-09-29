@@ -5,18 +5,18 @@
         #dori-tutorial-overlay {
             position: fixed; inset: 0; pointer-events: none; z-index: 9998;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 0 9999px rgba(0,0,0,0.7);
+            box-shadow: 0 0 0 9999px rgb(var(--shadow-color) / 0.8);
             border-radius: 24px;
             opacity: 0; visibility: hidden;
         }
         #dori-tutorial-tooltip {
             position: fixed; z-index: 9999;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgb(var(--surface));
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 2px solid rgb(var(--border-strong));
             border-radius: 16px;
-            padding: 20px; color: white; width: 300px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            padding: 20px; color: rgb(var(--text)); width: 300px;
+            box-shadow: 0 20px 40px rgb(var(--shadow-color) / 0.5);
             opacity: 0; visibility: hidden;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: auto;
@@ -79,12 +79,13 @@
         overlay.style.top = (rect.top - 10) + 'px';
         overlay.style.width = (rect.width + 20) + 'px';
         overlay.style.height = (rect.height + 20) + 'px';
+        overlay.style.borderRadius = window.getComputedStyle(target).borderRadius;
         
         overlay.classList.add('dori-tut-active');
 
         // Render Tooltip
-        let btnHtml = step.button ? `<button id="doriTutBtn" style="margin-top:15px; width:100%; padding:10px; border-radius:10px; background:#10b981; color:white; font-weight:bold; border:none; cursor:pointer;">${step.button}</button>` : '';
-        let skipHtml = `<button id="doriTutSkip" style="display:block; margin: 12px auto 0; background:transparent; border:none; color: #9ca3af; font-size:12px; cursor:pointer; text-decoration:underline;">Skip Tutorial</button>`;
+        let btnHtml = step.button ? `<button id="doriTutBtn" style="margin-top:15px; width:100%; padding:10px; border-radius:10px; background:rgb(var(--primary)); color:rgb(var(--on-primary)); font-weight:bold; border:none; cursor:pointer;">${step.button}</button>` : '';
+        let skipHtml = `<button id="doriTutSkip" style="display:block; margin: 12px auto 0; background:transparent; border:none; color: rgb(var(--text-muted)); font-size:12px; cursor:pointer; text-decoration:underline;">Skip Tutorial</button>`;
         tooltip.innerHTML = `<div style="font-size:14px; line-height:1.5;">${step.text}</div>${btnHtml}${skipHtml}`;
         
         document.getElementById('doriTutSkip').onclick = () => {

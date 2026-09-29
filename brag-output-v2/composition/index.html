@@ -5,9 +5,22 @@
     <meta name="viewport" content="width=1920, height=1080" />
     <title>Dori Launch Brag Video</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800;900&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Figtree', 'system-ui', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            }
+          }
+        }
+      }
+    </script>
     <style>
       * {
         margin: 0;
@@ -19,7 +32,7 @@
         width: 1920px;
         height: 1080px;
         overflow: hidden;
-        background: #0A0A0A;
+        background: #1F1412;
         font-family: 'Figtree', system-ui, -apple-system, sans-serif;
         color: #FAF9F6;
       }
@@ -28,7 +41,7 @@
         width: 1920px;
         height: 1080px;
         overflow: hidden;
-        background: #0A0A0A;
+        background: #1F1412;
       }
       .scene {
         position: absolute;
@@ -44,13 +57,13 @@
         pointer-events: none;
       }
       .btn-tactile-3d {
-        box-shadow: 0 12px 0 #047857, 0 30px 40px rgba(5, 150, 105, 0.4);
+        box-shadow: 0 12px 0 #482825, 0 30px 40px rgba(217, 189, 148, 0.4);
       }
       .btn-tactile-alert {
         box-shadow: 0 12px 0 #991B1B, 0 30px 40px rgba(220, 38, 38, 0.4);
       }
       .glow-emerald {
-        box-shadow: 0 0 100px -20px rgba(5, 150, 105, 0.4);
+        box-shadow: 0 0 100px -20px rgba(217, 189, 148, 0.4);
       }
       .otp-digit {
         display: inline-flex;
@@ -62,7 +75,7 @@
         font-weight: 900;
         border-radius: 18px;
         background: #171717;
-        border: 2px solid #333333;
+        border: 2px solid #482825;
         color: #FFFFFF;
         font-family: 'JetBrains Mono', monospace;
       }
@@ -78,7 +91,7 @@
       data-height="1080"
     >
       <!-- BACKGROUND AMBIENT GLOW -->
-      <div id="bg-glow" class="clip" data-start="0" data-duration="20" data-track-index="0" style="position: absolute; top: 15%; left: 30%; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(5, 150, 105, 0.15) 0%, rgba(10, 10, 10, 0) 70%); filter: blur(80px); pointer-events: none;"></div>
+      <div id="bg-glow" class="clip" data-start="0" data-duration="20" data-track-index="0" style="position: absolute; top: 15%; left: 30%; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(217, 189, 148, 0.15) 0%, rgba(31, 20, 18, 0) 70%); filter: blur(80px); pointer-events: none;"></div>
 
       <!-- AUDIO TRACK -->
       <audio
@@ -94,7 +107,7 @@
            SCENE 1: THE EMERGENCY HOOK (0.0s - 3.70s)
            ============================================== -->
       <div id="scene-1" class="clip scene" data-start="0" data-duration="3.7" data-track-index="1">
-        <div id="s1-badge" class="px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-black uppercase tracking-widest mb-6">
+        <div id="s1-badge" class="px-4 py-1.5 rounded-full bg-[#bb4426]/10 border border-[#bb4426]/30 text-[#E0673F] text-sm font-black uppercase tracking-widest mb-6">
           Dori • डोरी
         </div>
         <h1 id="s1-title" class="text-6xl font-black text-center tracking-tight max-w-4xl leading-tight mb-4 text-white">
@@ -105,13 +118,13 @@
         </p>
 
         <!-- Big Tactile Button -->
-        <div id="s1-btn" class="w-[280px] h-[280px] rounded-[56px] bg-[#059669] text-white btn-tactile-3d flex flex-col items-center justify-center gap-4">
+        <div id="s1-btn" class="w-[280px] h-[280px] rounded-[56px] bg-[#bb4426] text-white btn-tactile-3d flex flex-col items-center justify-center gap-4">
           <svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" viewBox="0 0 24 24" fill="currentColor">
             <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
           </svg>
           <div class="text-center">
             <div class="text-3xl font-black tracking-tight">Call Now</div>
-            <div class="text-sm font-semibold opacity-90">कॉल करें</div>
+            <div class="text-sm font-semibold opacity-100">कॉल करें</div>
           </div>
         </div>
       </div>
@@ -121,7 +134,7 @@
            ============================================== -->
       <div id="scene-2" class="clip scene" data-start="3.7" data-duration="5.26" data-track-index="2">
         <div class="w-full max-w-6xl flex flex-col items-center">
-          <div class="px-4 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-black uppercase tracking-widest mb-4">
+          <div class="px-4 py-1 rounded-full bg-[#d9bd94]/10 border border-[#d9bd94]/30 text-[#d9bd94] text-xs font-black uppercase tracking-widest mb-4">
             Stage 1: Ambient Acoustic Triage
           </div>
           <h2 class="text-5xl font-black text-center mb-8">
@@ -130,7 +143,7 @@
 
           <div class="grid grid-cols-2 gap-10 w-full items-center">
             <!-- Left: Active Parent Device -->
-            <div id="s2-left" class="bg-[#141414] border-2 border-[#262626] rounded-[36px] p-8 flex flex-col items-center text-center shadow-xl">
+            <div id="s2-left" class="bg-[#2B1B18] border-2 border-[#482825] rounded-[36px] p-8 flex flex-col items-center text-center shadow-xl">
               <div class="w-[200px] h-[200px] rounded-[44px] bg-[#DC2626] text-white btn-tactile-alert flex flex-col items-center justify-center gap-2 mb-6">
                 <!-- Waveform -->
                 <div class="flex items-end justify-center h-[36px] gap-1.5 mb-1">
@@ -146,15 +159,15 @@
             </div>
 
             <!-- Right: AI Triage Copilot -->
-            <div id="s2-right" class="bg-[#141414] border-2 border-[#262626] rounded-[36px] p-8 shadow-xl flex flex-col justify-between h-full">
+            <div id="s2-right" class="bg-[#2B1B18] border-2 border-[#482825] rounded-[36px] p-8 shadow-xl flex flex-col justify-between h-full">
               <div>
-                <div class="flex items-center justify-between border-b border-[#262626] pb-4 mb-4">
-                  <span class="text-xs font-black uppercase tracking-widest text-emerald-400">AI Triage Copilot</span>
+                <div class="flex items-center justify-between border-b border-[#482825] pb-4 mb-4">
+                  <span class="text-xs font-black uppercase tracking-widest text-[#E0673F]">AI Triage Copilot</span>
                   <span class="text-xs font-mono text-slate-400">Delhi, DL • Anand Sharma</span>
                 </div>
                 
                 <p class="text-xs font-black text-slate-500 uppercase tracking-widest mb-1">Natural Audio Transcript</p>
-                <div class="text-2xl font-black text-white italic bg-[#0A0A0A] p-4 rounded-2xl border border-[#262626] mb-6">
+                <div class="text-2xl font-black text-white italic bg-[#1F1412] p-4 rounded-2xl border border-[#482825] mb-6">
                   "छाती में बहुत तेज दर्द हो रहा है..."
                   <div class="text-sm font-normal text-slate-400 not-italic mt-1">(Severe chest pain, shortness of breath)</div>
                 </div>
@@ -163,16 +176,16 @@
               <!-- Badges grid -->
               <div class="grid grid-cols-3 gap-3">
                 <div id="s2-badge1" class="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-center">
-                  <p class="text-[10px] font-black uppercase tracking-widest text-red-400">Severity</p>
-                  <p class="text-base font-black text-red-500 mt-0.5">Critical Emergency</p>
+                  <p class="text-[10px] font-black uppercase tracking-widest text-red-300">Severity</p>
+                  <p class="text-base font-black text-red-300 mt-0.5">Critical Emergency</p>
                 </div>
-                <div id="s2-badge2" class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center">
-                  <p class="text-[10px] font-black uppercase tracking-widest text-emerald-400">Skill Needed</p>
-                  <p class="text-base font-black text-emerald-400 mt-0.5">Paramedic</p>
+                <div id="s2-badge2" class="p-3.5 rounded-xl bg-[#bb4426]/10 border border-[#bb4426]/30 text-center">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#E0673F]">Skill Needed</p>
+                  <p class="text-base font-black text-[#E0673F] mt-0.5">Paramedic</p>
                 </div>
-                <div id="s2-badge3" class="p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-center">
-                  <p class="text-[10px] font-black uppercase tracking-widest text-blue-400">Triage Speed</p>
-                  <p class="text-base font-black text-blue-400 mt-0.5">&lt; 1.8 Seconds</p>
+                <div id="s2-badge3" class="p-3.5 rounded-xl bg-[#d9bd94]/10 border border-[#d9bd94]/30 text-center">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#d9bd94]">Triage Speed</p>
+                  <p class="text-base font-black text-[#d9bd94] mt-0.5">&lt; 1.8 Seconds</p>
                 </div>
               </div>
             </div>
@@ -194,27 +207,27 @@
 
           <div class="grid grid-cols-2 gap-10 w-full items-center">
             <!-- Left: Dispatched Helper -->
-            <div id="s3-left" class="bg-[#141414] border-2 border-[#262626] rounded-[36px] p-8 shadow-xl">
-              <div class="flex items-center gap-5 border-b border-[#262626] pb-6 mb-6">
-                <div class="w-20 h-20 rounded-full bg-emerald-500/20 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-black text-3xl">
+            <div id="s3-left" class="bg-[#2B1B18] border-2 border-[#482825] rounded-[36px] p-8 shadow-xl">
+              <div class="flex items-center gap-5 border-b border-[#482825] pb-6 mb-6">
+                <div class="w-20 h-20 rounded-full bg-[#bb4426]/20 border-2 border-[#bb4426] text-[#E0673F] flex items-center justify-center font-black text-3xl">
                   SV
                 </div>
                 <div>
                   <div class="flex items-center gap-2">
-                    <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-xs font-black">DISPATCHED</span>
+                    <span class="px-2 py-0.5 rounded bg-[#bb4426]/20 text-[#E0673F] text-xs font-black">DISPATCHED</span>
                     <span class="text-xs text-slate-400 font-bold">ETA: 8 mins</span>
                   </div>
                   <h3 class="text-3xl font-black text-white mt-1">Sunil Verma</h3>
-                  <p class="text-sm font-bold text-emerald-400">Certified Emergency Paramedic</p>
+                  <p class="text-sm font-bold text-[#E0673F]">Certified Emergency Paramedic</p>
                 </div>
               </div>
 
               <div class="flex gap-4">
-                <div class="flex-1 p-3.5 rounded-2xl bg-[#0A0A0A] border border-[#262626] text-center">
+                <div class="flex-1 p-3.5 rounded-2xl bg-[#1F1412] border border-[#482825] text-center">
                   <p class="text-[10px] font-black uppercase text-slate-400">Verification</p>
                   <p class="text-sm font-black text-white mt-0.5">Govt ID & Criminal Clear</p>
                 </div>
-                <div class="flex-1 p-3.5 rounded-2xl bg-[#0A0A0A] border border-[#262626] text-center">
+                <div class="flex-1 p-3.5 rounded-2xl bg-[#1F1412] border border-[#482825] text-center">
                   <p class="text-[10px] font-black uppercase text-slate-400">Rating</p>
                   <p class="text-sm font-black text-amber-400 mt-0.5">★ 4.9 (142 Tasks)</p>
                 </div>
@@ -222,27 +235,27 @@
             </div>
 
             <!-- Right: Zero-Trust Security OTP -->
-            <div id="s3-right" data-layout-allow-occlusion="true" class="bg-[#141414] border-2 border-[#262626] rounded-[36px] p-8 shadow-xl text-center flex flex-col items-center justify-center relative overflow-hidden">
-              <p data-layout-allow-occlusion="true" class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Senior's Security Code</p>
-              <h3 data-layout-allow-occlusion="true" class="text-xl font-bold text-slate-200 mb-6">Zero-Trust Physical Handshake</h3>
+            <div id="s3-right" data-layout-allow-overlap="true" class="bg-[#2B1B18] border-2 border-[#482825] rounded-[36px] p-8 shadow-xl text-center flex flex-col items-center justify-center relative overflow-hidden">
+              <p data-layout-allow-overlap="true" class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Senior's Security Code</p>
+              <h3 data-layout-allow-overlap="true" class="text-xl font-bold text-slate-200 mb-6">Zero-Trust Physical Handshake</h3>
 
               <!-- The OTP Digits -->
-              <div data-layout-allow-occlusion="true" class="flex justify-center gap-4 mb-6">
-                <span id="otp-1" data-layout-allow-occlusion="true" class="otp-digit">4</span>
-                <span id="otp-2" data-layout-allow-occlusion="true" class="otp-digit">0</span>
-                <span id="otp-3" data-layout-allow-occlusion="true" class="otp-digit">9</span>
-                <span id="otp-4" data-layout-allow-occlusion="true" class="otp-digit">2</span>
+              <div data-layout-allow-overlap="true" class="flex justify-center gap-4 mb-6">
+                <span id="otp-1" data-layout-allow-overlap="true" class="otp-digit">4</span>
+                <span id="otp-2" data-layout-allow-overlap="true" class="otp-digit">0</span>
+                <span id="otp-3" data-layout-allow-overlap="true" class="otp-digit">9</span>
+                <span id="otp-4" data-layout-allow-overlap="true" class="otp-digit">2</span>
               </div>
 
-              <p data-layout-allow-occlusion="true" class="text-xs font-bold text-red-400 bg-red-500/10 px-4 py-2 rounded-xl border border-red-500/20">
+              <p data-layout-allow-overlap="true" class="text-xs font-bold text-red-300 bg-red-500/10 px-4 py-2 rounded-xl border border-red-500/20">
                 Helper cannot enter premises without this physical code
               </p>
 
               <!-- Flash Overlay on Beat 12.65s (Intentional overlay) -->
-              <div id="s3-verify-banner" data-layout-allow-occlusion="true" class="absolute inset-0 bg-emerald-600/95 flex flex-col items-center justify-center text-white p-6 opacity-0">
+              <div id="s3-verify-banner" data-layout-allow-overlap="true" class="absolute inset-0 bg-[#bb4426]/95 flex flex-col items-center justify-center text-white p-6 opacity-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mb-3"><path d="M20 6L9 17l-5-5"/></svg>
                 <h4 class="text-3xl font-black">Identity Verified</h4>
-                <p class="text-base font-bold opacity-90 mt-1">Zero Impersonation Risk • Scene Secured</p>
+                <p class="text-base font-bold opacity-100 mt-1">Zero Impersonation Risk • Scene Secured</p>
               </div>
             </div>
           </div>
@@ -263,30 +276,30 @@
           <p class="text-lg text-slate-400 mb-8 font-medium">Bridging the 10,000-mile gap in under 800 milliseconds.</p>
 
           <!-- Timeline horizontal card -->
-          <div class="w-full bg-[#141414] border-2 border-[#262626] rounded-[32px] p-8 shadow-xl">
+          <div class="w-full bg-[#2B1B18] border-2 border-[#482825] rounded-[32px] p-8 shadow-xl">
             <div class="flex items-center justify-between mb-8">
               <div class="flex items-center gap-3">
-                <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
+                <div class="w-3 h-3 rounded-full bg-[#bb4426] animate-ping"></div>
                 <span class="text-base font-extrabold text-white">Live Event Tracker: Anand Sharma (Delhi)</span>
               </div>
-              <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Active Stream</span>
+              <span class="text-xs font-mono text-[#E0673F] bg-[#bb4426]/10 px-3 py-1 rounded-full border border-[#bb4426]/20">Active Stream</span>
             </div>
 
             <div class="grid grid-cols-3 gap-6">
-              <div id="s4-step1" class="p-5 rounded-2xl bg-[#0A0A0A] border-2 border-emerald-500">
-                <div class="text-emerald-400 font-mono text-xs font-bold mb-1">00:00 • STEP 1</div>
+              <div id="s4-step1" class="p-5 rounded-2xl bg-[#1F1412] border-2 border-[#bb4426]">
+                <div class="text-[#E0673F] font-mono text-xs font-bold mb-1">00:00 • STEP 1</div>
                 <div class="text-lg font-black text-white">SOS Triggered</div>
                 <p class="text-xs text-slate-400 mt-1 font-semibold">Delhi residence sensor opened ambient line.</p>
               </div>
 
-              <div id="s4-step2" class="p-5 rounded-2xl bg-[#0A0A0A] border-2 border-emerald-500">
-                <div class="text-emerald-400 font-mono text-xs font-bold mb-1">00:03 • STEP 2</div>
+              <div id="s4-step2" class="p-5 rounded-2xl bg-[#1F1412] border-2 border-[#bb4426]">
+                <div class="text-[#E0673F] font-mono text-xs font-bold mb-1">00:03 • STEP 2</div>
                 <div class="text-lg font-black text-white">Paramedic Dispatched</div>
                 <p class="text-xs text-slate-400 mt-1 font-semibold">Sunil Verma assigned based on acute pain triage.</p>
               </div>
 
-              <div id="s4-step3" class="p-5 rounded-2xl bg-[#0A0A0A] border-2 border-emerald-500">
-                <div class="text-emerald-400 font-mono text-xs font-bold mb-1">00:15 • STEP 3</div>
+              <div id="s4-step3" class="p-5 rounded-2xl bg-[#1F1412] border-2 border-[#bb4426]">
+                <div class="text-[#E0673F] font-mono text-xs font-bold mb-1">00:15 • STEP 3</div>
                 <div class="text-lg font-black text-white">OTP Handshake Verified</div>
                 <p class="text-xs text-slate-400 mt-1 font-semibold">Helper physically verified on site.</p>
               </div>
@@ -300,22 +313,14 @@
            ============================================== -->
       <div id="scene-5" class="clip scene" data-start="17.91" data-duration="2.09" data-track-index="5">
         <div class="flex flex-col items-center text-center">
-          <div id="s5-icon" class="w-24 h-24 rounded-[32px] bg-[#059669] text-white flex items-center justify-center btn-tactile-3d mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-          </div>
+          <img src="assets/logo.png" id="s5-icon" class="w-48 h-auto mb-8 drop-shadow-2xl rounded-[32px]" alt="Dori Logo" />
           
-          <h1 id="s5-title" class="text-7xl font-black tracking-tight text-white mb-3">
-            Dori <span class="text-emerald-400 font-extrabold text-5xl">| डोरी</span>
-          </h1>
-          <p id="s5-tagline" class="text-2xl font-bold text-slate-300 max-w-2xl mb-4">
-            Zero Cognitive Load • Algorithmic Care
-          </p>
-          <div id="s5-sub" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#1A1A1A] border border-[#333333] text-sm font-bold text-slate-400">
+          <h1 id="s5-title" class="text-6xl font-black tracking-tight text-white mb-3">Perfection in Care.</h1>
+          <p id="s5-tagline" class="text-2xl font-bold text-slate-300 max-w-2xl mb-4">dori.vaidikkohli.me</p>
+          <div id="s5-sub" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#1A1A1A] border border-[#482825] text-sm font-bold text-slate-400">
             <span>Bharat Innovation Challenge 2.0</span>
-            <span class="text-emerald-400">•</span>
-            <span class="text-emerald-400">Live Demo Ready</span>
+            <span class="text-[#E0673F]">•</span>
+            <span class="text-[#E0673F]">Live Demo Ready</span>
           </div>
         </div>
       </div>
@@ -366,10 +371,10 @@
       tl.fromTo("#s3-right", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 9.20);
 
       // OTP digits sequence on beat grid (10.01s, 10.54s, 11.06s, 11.60s)
-      tl.fromTo("#otp-1", { borderColor: "#333", scale: 0.9 }, { borderColor: "#059669", scale: 1.1, duration: 0.2 }, 10.01);
-      tl.fromTo("#otp-2", { borderColor: "#333", scale: 0.9 }, { borderColor: "#059669", scale: 1.1, duration: 0.2 }, 10.54);
-      tl.fromTo("#otp-3", { borderColor: "#333", scale: 0.9 }, { borderColor: "#059669", scale: 1.1, duration: 0.2 }, 11.06);
-      tl.fromTo("#otp-4", { borderColor: "#333", scale: 0.9 }, { borderColor: "#059669", scale: 1.1, duration: 0.2 }, 11.60);
+      tl.fromTo("#otp-1", { borderColor: "#333", scale: 0.9 }, { borderColor: "#bb4426", scale: 1.1, duration: 0.2 }, 10.01);
+      tl.fromTo("#otp-2", { borderColor: "#333", scale: 0.9 }, { borderColor: "#bb4426", scale: 1.1, duration: 0.2 }, 10.54);
+      tl.fromTo("#otp-3", { borderColor: "#333", scale: 0.9 }, { borderColor: "#bb4426", scale: 1.1, duration: 0.2 }, 11.06);
+      tl.fromTo("#otp-4", { borderColor: "#333", scale: 0.9 }, { borderColor: "#bb4426", scale: 1.1, duration: 0.2 }, 11.60);
 
       // Verification Success Flash on beat 12.65s (beat-locked)
       tl.fromTo("#s3-verify-banner", 
