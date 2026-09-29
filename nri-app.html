@@ -93,9 +93,9 @@
   <link rel="icon" type="image/png" href="logo.png">
 </head>
 
-<body class="bg-bgLight dark:bg-bgDark text-text antialiased min-h-screen flex flex-col transition-colors duration-300" style="-webkit-tap-highlight-color: transparent;">
+<body class="bg-background dark:bg-background text-text antialiased min-h-screen flex flex-col transition-colors duration-300" style="-webkit-tap-highlight-color: transparent;">
 
-  <div class="flex-1 flex flex-col max-w-[480px] mx-auto w-full relative border-x-2 border-border bg-bgLight dark:bg-bgDark h-[100dvh] overflow-hidden">
+  <div class="flex-1 flex flex-col max-w-[480px] mx-auto w-full relative border-x-2 border-border bg-background dark:bg-background h-[100dvh] overflow-hidden">
 
     <!-- HEADER -->
     <header class="px-6 py-5 flex items-center justify-between border-b-2 border-border bg-surface shrink-0 z-20">
@@ -130,7 +130,7 @@
     </header>
 
     <!-- SCROLLABLE TIMELINE & PROFILE -->
-    <main class="flex-1 overflow-y-auto relative flex flex-col min-h-0 bg-bgLight dark:bg-bgDark">
+    <main class="flex-1 overflow-y-auto relative flex flex-col min-h-0 bg-background dark:bg-background">
       
       <!-- Live Tracker -->
       <div class="p-8">
@@ -246,7 +246,7 @@
           </div>
           
           <!-- CHAT MODAL -->
-          <div id="chatModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-bgDark/60 backdrop-blur-sm">
+          <div id="chatModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 backdrop-blur-sm">
              <div class="bg-surface border-2 border-border rounded-[32px] w-full max-w-md overflow-hidden flex flex-col h-[500px]">
                 <div class="p-5 border-b border-border flex items-center justify-between">
                     <div class="flex items-center gap-3">
@@ -256,11 +256,11 @@
                             <p class="text-xs text-primary">Active Now</p>
                         </div>
                     </div>
-                    <button onclick="document.getElementById('chatModal').classList.add('hidden')" class="p-2 rounded-full bg-bgLight dark:bg-bgDark text-textMuted hover:text-onPrimary transition-colors">
+                    <button onclick="document.getElementById('chatModal').classList.add('hidden')" class="p-2 rounded-full bg-background dark:bg-background text-textMuted hover:text-onPrimary transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                     </button>
                 </div>
-                <div class="flex-1 p-5 overflow-y-auto flex flex-col gap-4 bg-bgLight dark:bg-bgDark">
+                <div class="flex-1 p-5 overflow-y-auto flex flex-col gap-4 bg-background dark:bg-background">
                     <div class="self-end bg-primary text-onPrimary p-3 rounded-2xl rounded-tr-none max-w-[80%]">
                         <p class="text-sm font-medium">Hi Sunil, please hurry, my father is having chest pain.</p>
                     </div>
@@ -269,7 +269,7 @@
                     </div>
                 </div>
                 <div class="p-4 border-t border-border bg-surface flex gap-2">
-                    <input type="text" placeholder="Type a message..." class="flex-1 bg-bgLight dark:bg-bgDark border-2 border-border rounded-full px-4 text-sm focus:outline-none">
+                    <input type="text" placeholder="Type a message..." class="flex-1 bg-background dark:bg-background border-2 border-border rounded-full px-4 text-sm focus:outline-none">
                     <button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-onPrimary shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                     </button>

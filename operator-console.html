@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" href="logo.png">
 </head>
 
-<body class="bg-bgLight dark:bg-bgDark text-text antialiased h-screen flex overflow-hidden transition-colors duration-300">
+<body class="bg-background dark:bg-background text-text antialiased h-screen flex overflow-hidden transition-colors duration-300">
 
   <!-- LEFT NAV RAIL -->
   <nav class="w-[80px] bg-surface border-r-2 border-border flex flex-col items-center py-6 shrink-0 transition-colors duration-300 z-10"
@@ -25,7 +25,7 @@
     <!-- Nav items -->
     <div class="flex flex-col items-center gap-4 flex-1 w-full px-3">
       <!-- Dashboard (active) -->
-      <button class="w-full aspect-square rounded-[14px] bg-bgDark dark:bg-surface text-onPrimary dark:text-text flex items-center justify-center shadow-sm">
+      <button class="w-full aspect-square rounded-[14px] bg-background dark:bg-surface text-onPrimary dark:text-text flex items-center justify-center shadow-sm">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
           <rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/>
           <rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>
@@ -55,20 +55,20 @@
 
     <!-- Bottom: Operator avatar -->
     <div class="mt-auto">
-      <div class="w-12 h-12 rounded-full bg-surface dark: border-2 border-border flex items-center justify-center text-sm font-black text-text">
+      <div class="w-12 h-12 rounded-full bg-surface border-2 border-border flex items-center justify-center text-sm font-black text-text">
         RI
       </div>
     </div>
   </nav>
 
   <!-- MAIN CONTENT AREA -->
-  <div class="flex-1 flex flex-col min-w-0 bg-bgLight dark:bg-bgDark transition-colors duration-300">
+  <div class="flex-1 flex flex-col min-w-0 bg-background dark:bg-background transition-colors duration-300">
     
     <!-- HEADER -->
     <header class="h-[80px] px-8 flex items-center justify-between border-b-2 border-border bg-surface shrink-0 transition-colors duration-300 z-10">
       <div class="flex items-center gap-5">
         <h1 class="text-2xl font-black tracking-tight">Live Triage Queue</h1>
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full border-2 border-border bg-bgLight dark:bg-bgDark">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full border-2 border-border bg-background dark:bg-background">
           <span class="w-2.5 h-2.5 rounded-full bg-primary animate-subtle-pulse shrink-0"></span>
           <span class="text-xs font-bold uppercase tracking-widest text-textMuted">System Online</span>
         </div>
@@ -145,7 +145,7 @@
             </button>
             
             <!-- Item 4 -->
-            <button onclick="selectCall(3)" id="q-3" class="queue-card w-full text-left p-4 rounded-[16px] border-2 border-border bg-bgLight dark:bg-bgDark opacity-60 hover:opacity-100 transition-all">
+            <button onclick="selectCall(3)" id="q-3" class="queue-card w-full text-left p-4 rounded-[16px] border-2 border-border bg-background dark:bg-background opacity-60 hover:opacity-100 transition-all">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs font-bold text-textMuted">12 min ago</span>
                 <span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-primary/10 text-primary border border-primary/20">Done</span>
@@ -161,7 +161,7 @@
           <div class="bg-surface border-2 border-border rounded-[24px] flex flex-col h-full overflow-hidden shadow-sm min-h-0">
             
             <!-- Card Header -->
-            <div class="px-8 py-5 border-b-2 border-border bg-bgLight dark: flex items-center justify-between shrink-0">
+            <div class="px-8 py-5 border-b-2 border-border bg-background flex items-center justify-between shrink-0">
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -200,27 +200,27 @@
 
               <!-- Details Grid -->
               <div id="metadataGrid" class="grid grid-cols-2 gap-4 mb-8">
-                <div class="col-span-2 p-5 rounded-[16px] border-2 border-border bg-bgLight dark:">
+                <div class="col-span-2 p-5 rounded-[16px] border-2 border-border bg-background ">
                   <p class="text-[10px] font-black text-textMuted uppercase tracking-widest mb-2">Issue Reported</p>
                   <p id="card-issue" class="text-base font-bold leading-relaxed">Video call screen is black. Audio works but camera shows nothing. Phone was dropped last week.</p>
                 </div>
                 
-                <div class="p-5 rounded-[16px] border-2 border-border bg-bgLight dark:">
+                <div class="p-5 rounded-[16px] border-2 border-border bg-background ">
                   <p class="text-[10px] font-black text-textMuted uppercase tracking-widest mb-2">Category</p>
                   <p id="card-category" class="text-sm font-bold">Tech Help</p>
                 </div>
 
-                <div class="p-5 rounded-[16px] border-2 border-border bg-bgLight dark:">
+                <div class="p-5 rounded-[16px] border-2 border-border bg-background ">
                   <p class="text-[10px] font-black text-textMuted uppercase tracking-widest mb-2">Helper Skill</p>
                   <p id="card-skill" class="text-sm font-bold text-primary">Tech-savvy helper</p>
                 </div>
 
-                <div class="p-5 rounded-[16px] border-2 border-border bg-bgLight dark:">
+                <div class="p-5 rounded-[16px] border-2 border-border bg-background ">
                   <p class="text-[10px] font-black text-textMuted uppercase tracking-widest mb-2">Time</p>
                   <p id="card-time" class="text-sm font-bold">Tomorrow after 3:00 PM</p>
                 </div>
 
-                <div class="p-5 rounded-[16px] border-2 border-border bg-bgLight dark:">
+                <div class="p-5 rounded-[16px] border-2 border-border bg-background ">
                   <p class="text-[10px] font-black text-textMuted uppercase tracking-widest mb-2">Follow-up</p>
                   <p id="card-followup" class="text-sm font-bold">Yes — Inform son</p>
                 </div>
@@ -234,7 +234,7 @@
                   </svg>
                   View Raw Transcript
                 </summary>
-                <div id="card-transcript" class="mt-4 p-5 rounded-[16px] border-2 border-border bg-bgLight dark:bg-bgDark text-sm font-medium leading-relaxed space-y-3 font-mono opacity-80">
+                <div id="card-transcript" class="mt-4 p-5 rounded-[16px] border-2 border-border bg-background dark:bg-background text-sm font-medium leading-relaxed space-y-3 font-mono opacity-80">
                   <!-- Transcript injected via JS -->
                 </div>
               </details>
@@ -242,7 +242,7 @@
             </div>
 
             <!-- Card Footer: Dispatch Action -->
-            <div class="p-6 border-t-2 border-border bg-bgLight dark: shrink-0">
+            <div class="p-6 border-t-2 border-border bg-background shrink-0">
               
               <!-- PENDING -->
               <div id="state-pending" class="flex items-center justify-between">
@@ -290,11 +290,11 @@
           <div class="bg-surface border-2 border-border rounded-[24px] p-6 shadow-sm">
             <h3 class="text-[10px] font-black uppercase tracking-widest text-textMuted mb-5">Today's Activity</h3>
             <div class="grid grid-cols-2 gap-4">
-              <div class="p-4 rounded-[16px] bg-bgLight dark: border-2 border-border text-center">
+              <div class="p-4 rounded-[16px] bg-background border-2 border-border text-center">
                 <p class="text-3xl font-black">11</p>
                 <p class="text-[10px] font-bold text-textMuted uppercase mt-1">Total</p>
               </div>
-              <div class="p-4 rounded-[16px] bg-bgLight dark: border-2 border-primary/30 text-center">
+              <div class="p-4 rounded-[16px] bg-background border-2 border-primary/30 text-center">
                 <p class="text-3xl font-black text-primary">9</p>
                 <p class="text-[10px] font-bold text-textMuted uppercase mt-1">Done</p>
               </div>
@@ -629,7 +629,7 @@ setTimeout(() => { renderQueue(); selectCall(0); }, 500);
   </script>
 
   <!-- MOBILE BLOCKER -->
-  <div id="mobileBlocker" class="fixed inset-0 z-[9999] bg-bgDark text-onPrimary hidden flex-col items-center justify-center p-6 text-center">
+  <div id="mobileBlocker" class="fixed inset-0 z-[9999] bg-background text-onPrimary hidden flex-col items-center justify-center p-6 text-center">
     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emergency mb-6"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
     <h1 class="text-3xl font-black mb-4">Not Permitted</h1>
     <p class="text-lg text-textMuted font-medium max-w-sm mb-8">The Operator Console requires a desktop landscape environment. Please access this portal from a computer.</p>
@@ -637,7 +637,7 @@ setTimeout(() => { renderQueue(); selectCall(0); }, 500);
   </div>
 
   <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-bgDark dark:bg-surface text-onPrimary dark:text-text px-6 py-3 rounded-full font-bold text-sm opacity-0 pointer-events-none transition-opacity duration-300 z-[9999]">
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-background dark:bg-surface text-onPrimary dark:text-text px-6 py-3 rounded-full font-bold text-sm opacity-0 pointer-events-none transition-opacity duration-300 z-[9999]">
     View not implemented
   </div>
 

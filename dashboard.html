@@ -18,9 +18,9 @@
   <link rel="icon" type="image/png" href="logo.png">
 </head>
 
-<body class="bg-bgLight dark:bg-bgDark text-text antialiased min-h-screen flex flex-col transition-colors duration-300" style="-webkit-tap-highlight-color: transparent;">
+<body class="bg-background dark:bg-background text-text antialiased min-h-screen flex flex-col transition-colors duration-300" style="-webkit-tap-highlight-color: transparent;">
 
-  <div id="appContainer" class="flex-1 flex flex-col max-w-[480px] mx-auto w-full relative border-x-2 border-border bg-bgLight dark:bg-bgDark h-[100dvh] overflow-hidden">
+  <div id="appContainer" class="flex-1 flex flex-col max-w-[480px] mx-auto w-full relative border-x-2 border-border bg-background dark:bg-background h-[100dvh] overflow-hidden">
 
     <!-- HEADER: Reassurance & Controls -->
     <header class="px-6 py-4 flex items-center justify-between shrink-0 z-10 border-b border-border/40 /40">
@@ -128,10 +128,10 @@
             <div id="otpArea" class="pt-2 text-center">
               <p class="text-xs font-bold text-textMuted dark:text-textMuted uppercase tracking-widest mb-2.5" data-en="Security Code (OTP)" data-hi="सुरक्षा कोड (OTP)">Security Code (OTP)</p>
               <div class="flex justify-center gap-2.5" id="otpContainer">
-                <span id="otp1" class="otp-digit border-2 border-border bg-surface dark: text-text">-</span>
-                <span id="otp2" class="otp-digit border-2 border-border bg-surface dark: text-text">-</span>
-                <span id="otp3" class="otp-digit border-2 border-border bg-surface dark: text-text">-</span>
-                <span id="otp4" class="otp-digit border-2 border-border bg-surface dark: text-text">-</span>
+                <span id="otp1" class="otp-digit border-2 border-border bg-surface text-text">-</span>
+                <span id="otp2" class="otp-digit border-2 border-border bg-surface text-text">-</span>
+                <span id="otp3" class="otp-digit border-2 border-border bg-surface text-text">-</span>
+                <span id="otp4" class="otp-digit border-2 border-border bg-surface text-text">-</span>
               </div>
               <p class="text-xs font-semibold mt-3 text-emergency bg-emergency/10 py-1.5 px-3 rounded-lg inline-block" data-en="Do not share this on the phone" data-hi="इसे फोन पर किसी को न बताएं">Do not share this on the phone</p>
             </div>
@@ -156,7 +156,7 @@
             <p class="text-xs text-textMuted font-semibold">+91 98765 43210</p>
           </div>
         </div>
-        <a href="tel:+919876543210" class="btn-tactile h-10 px-4 rounded-full bg-bgDark dark:bg-surface text-onPrimary dark:text-text font-extrabold text-sm flex items-center justify-center shadow-sm shrink-0 focus:outline-none" data-en="Direct Call" data-hi="सीधा कॉल">
+        <a href="tel:+919876543210" class="btn-tactile h-10 px-4 rounded-full bg-background dark:bg-surface text-onPrimary dark:text-text font-extrabold text-sm flex items-center justify-center shadow-sm shrink-0 focus:outline-none" data-en="Direct Call" data-hi="सीधा कॉल">
           Direct Call
         </a>
       </div>

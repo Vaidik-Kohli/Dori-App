@@ -7,6 +7,8 @@
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
+        background: 'rgb(var(--bg) / <alpha-value>)',
+        surface: 'rgb(var(--surface) / <alpha-value>)',
         bgLight: '#FBF3E4',
         bgDark: '#1F1412',
         surfaceLight: '#F3E6CC',
